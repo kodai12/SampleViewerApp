@@ -7,13 +7,30 @@
 //
 
 import UIKit
+import RealmSwift
 
-class FavoriteViewController: UIViewController {
+class FavoriteViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var favoriteListTableView: UITableView!
+    var favoriteArticles = [FavoriteArticle]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        favoriteListTableView.delegate = self
+        favoriteListTableView.dataSource = self
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return favoriteArticles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: FavoriteTableViewCell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell") as! FavoriteTableViewCell
+        cell.realmSetting(indexPath: indexPath)
+        return cell
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,14 +39,5 @@ class FavoriteViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

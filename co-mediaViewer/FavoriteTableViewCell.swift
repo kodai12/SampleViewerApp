@@ -7,8 +7,19 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FavoriteTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var url: UILabel!
+    @IBOutlet weak var title: UILabel!
+    
+    func realmSetting(indexPath: IndexPath){
+        
+        url.text = RealmModel.realm.usersSet[indexPath.row].url
+        title.text = RealmModel.realm.usersSet[indexPath.row].title
+        
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

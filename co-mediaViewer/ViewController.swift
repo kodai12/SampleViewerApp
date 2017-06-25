@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import RealmSwift
 
 class ViewController: UIViewController, WKUIDelegate {
     
@@ -16,7 +17,8 @@ class ViewController: UIViewController, WKUIDelegate {
     
     var currentURL: URL?
     var currentTitle: String?
-    var currentCreatedAt: String?
+    
+    var currentArticle = FavoriteArticle()
     
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
@@ -33,18 +35,22 @@ class ViewController: UIViewController, WKUIDelegate {
     }
     
     @IBAction func clickAddFavoriteList(_ sender: Any) {
-        
-        print("aaa")
+     
+        // webViewからタイトル、URL、投稿日、イメージを取得
         currentURL = mainWebView.url
-        mainWebView.evaluateJavaScript("document.getElementByClassName('article-box-title').value"){(result, error) in
-            if error != nil{
-                print("result is \(result)")
-            }
+        currentTitle = mainWebView.title
+        
+        // 取得した各値をまとめてRealmに保存
+        if currentTitle != nil && currentURL != nil{
+            currentArticle.title = currentTitle!
+            currentArticle.url = String(describing: currentURL)
         }
-        print("currentURLString is \(currentURL)")
-        print("currentTitle is \(currentTitle)")    
+        let realm = RealmModel.realm.realmTry
+        try! realm.write {
+            realm.add(currentArticle)
+        }
+        
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
