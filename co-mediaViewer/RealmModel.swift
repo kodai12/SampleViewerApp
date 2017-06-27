@@ -9,7 +9,6 @@
 import Foundation
 import RealmSwift
 
-
 class FavoriteArticle: Object {
     
     dynamic var url = String()

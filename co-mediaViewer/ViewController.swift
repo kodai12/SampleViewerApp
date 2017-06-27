@@ -49,6 +49,9 @@ class ViewController: UIViewController, WKUIDelegate {
         try! realm.write {
             realm.add(currentArticle)
         }
+        // お気入りリストに追加後FavoriteVCに遷移
+        let favoriteVC: FavoriteViewController = self.storyboard?.instantiateViewController(withIdentifier: "favoriteVC") as! FavoriteViewController
+        self.present(favoriteVC, animated: true, completion: nil)
         
     }
 
