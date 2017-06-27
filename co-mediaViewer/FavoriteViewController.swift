@@ -12,8 +12,7 @@ import RealmSwift
 class FavoriteViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var favoriteListTableView: UITableView!
-    var favoriteArticles = [FavoriteArticle]()
-    var favoriteArticle:Results<FavoriteArticle>?
+    var favoriteArticles:Results<FavoriteArticle>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,23 +21,48 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         favoriteListTableView.dataSource = self
         
         loadData()
-        print("favoriteArticle is \(favoriteArticle!)")
+        
     }
     
     func loadData(){
         
         let realm = RealmModel.realm.realmTry
-        favoriteArticle = realm.objects(FavoriteArticle.self)
+        favoriteArticles = realm.objects(FavoriteArticle.self)
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favoriteArticles.count
+        return favoriteArticles!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: FavoriteTableViewCell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell") as! FavoriteTableViewCell
-        cell.realmSetting(indexPath: indexPath)
+        cell.favoriteArticleCell = favoriteArticles?[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            let realm = RealmModel.realm.realmTry
+            try! realm.write {
+                realm.delete(RealmModel.realm.usersSet[indexPath.row])
+            }
+            favoriteListTableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "delete") { (action, index) -> Void in
+            let realm = RealmModel.realm.realmTry
+            try! realm.write {
+                realm.delete(RealmModel.realm.usersSet[indexPath.row])
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        deleteButton.backgroundColor = UIColor.red
+        
+        return [deleteButton]
     }
 
     override func didReceiveMemoryWarning() {

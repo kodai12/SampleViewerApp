@@ -14,10 +14,18 @@ class FavoriteTableViewCell: UITableViewCell {
     @IBOutlet weak var url: UILabel!
     @IBOutlet weak var title: UILabel!
     
-    func realmSetting(indexPath: IndexPath){
+    var favoriteArticleCell: FavoriteArticle?{
+        didSet{
+            realmSetting()
+        }
+    }
+    
+    func realmSetting(){
         
-        url.text = RealmModel.realm.usersSet[indexPath.row].url
-        title.text = RealmModel.realm.usersSet[indexPath.row].title
+        if let unwrappedCell = favoriteArticleCell{
+            url.text = unwrappedCell.url
+            title.text = unwrappedCell.title
+        }
         
     }
 
