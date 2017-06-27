@@ -11,8 +11,8 @@ import RealmSwift
 
 class FavoriteTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var url: UILabel!
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var url: UILabel!
     
     var favoriteArticleCell: FavoriteArticle?{
         didSet{

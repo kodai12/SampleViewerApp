@@ -35,15 +35,15 @@ class ViewController: UIViewController, WKUIDelegate {
     }
     
     @IBAction func clickAddFavoriteList(_ sender: Any) {
-     
+        
         // webViewからタイトル、URL、投稿日、イメージを取得
         currentURL = mainWebView.url
         currentTitle = mainWebView.title
         
         // 取得した各値をまとめてRealmDBに保存
-        if currentTitle != nil && currentURL != nil{
-            currentArticle.title = currentTitle!
-            currentArticle.url = String(describing: currentURL)
+        if let unwrappedTitle = currentTitle, let unwrappedURL = currentURL{
+            currentArticle.title = unwrappedTitle
+            currentArticle.url = String(describing: unwrappedURL)
         }
         let realm = RealmModel.realm.realmTry
         try! realm.write {

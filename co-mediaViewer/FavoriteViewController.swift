@@ -13,6 +13,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var favoriteListTableView: UITableView!
     var favoriteArticles:Results<FavoriteArticle>?
+    var selectedURL:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,6 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         favoriteListTableView.dataSource = self
         
         loadData()
-        
     }
     
     func loadData(){
@@ -39,6 +39,21 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell: FavoriteTableViewCell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell") as! FavoriteTableViewCell
         cell.favoriteArticleCell = favoriteArticles?[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let unwrappedURL = favoriteArticles?[indexPath.row].url{
+            selectedURL = unwrappedURL
+        }
+        performSegue(withIdentifier: "toDetail", sender: nil)
+        favoriteListTableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetail"{
+            let detailVC: FavoriteDetailViewController = segue.destination as! FavoriteDetailViewController
+            detailVC.detailArticleURLString = selectedURL
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
