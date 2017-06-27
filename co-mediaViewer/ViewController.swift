@@ -40,7 +40,7 @@ class ViewController: UIViewController, WKUIDelegate {
         currentURL = mainWebView.url
         currentTitle = mainWebView.title
         
-        // 取得した各値をまとめてRealmに保存
+        // 取得した各値をまとめてRealmDBに保存
         if currentTitle != nil && currentURL != nil{
             currentArticle.title = currentTitle!
             currentArticle.url = String(describing: currentURL)
@@ -50,8 +50,8 @@ class ViewController: UIViewController, WKUIDelegate {
             realm.add(currentArticle)
         }
         // お気入りリストに追加後FavoriteVCに遷移
-        let favoriteVC: FavoriteViewController = self.storyboard?.instantiateViewController(withIdentifier: "favoriteVC") as! FavoriteViewController
-        self.present(favoriteVC, animated: true, completion: nil)
+        let firstSettingTBC: firstSettingTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "firstSettingTBC") as! firstSettingTabBarController
+        self.present(firstSettingTBC, animated: true, completion: nil)
         
     }
 

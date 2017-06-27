@@ -2,7 +2,7 @@
 //  RealmModel.swift
 //  co-mediaViewer
 //
-//  Created by 迫地康大 on 2017/06/25.
+//  Created by 迫地康大 on 2017/06/27.
 //  Copyright © 2017年 sakochi. All rights reserved.
 //
 

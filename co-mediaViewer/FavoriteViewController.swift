@@ -13,6 +13,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var favoriteListTableView: UITableView!
     var favoriteArticles = [FavoriteArticle]()
+    var favoriteArticle:Results<FavoriteArticle>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,14 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         favoriteListTableView.delegate = self
         favoriteListTableView.dataSource = self
         
+        loadData()
+        print("favoriteArticle is \(favoriteArticle!)")
+    }
+    
+    func loadData(){
         
+        let realm = RealmModel.realm.realmTry
+        favoriteArticle = realm.objects(FavoriteArticle.self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
