@@ -39,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="1359.2" y="499.70014992503752"/>
         </scene>
-        <!--Item 1-->
+        <!--Favorite View Controller-->
         <scene sceneID="6TU-IE-iIc">
             <objects>
                 <viewController id="3py-1p-TtA" customClass="FavoriteViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
@@ -89,7 +89,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="bez-PA-87N"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="bez-PA-87N"/>
                     <connections>
                         <outlet property="favoriteListTableView" destination="iU3-fe-gNm" id="KMf-1k-qzd"/>
                         <segue destination="MVG-lS-L8X" kind="show" identifier="toDetail" id="EfG-5h-dBd"/>
@@ -136,11 +136,11 @@
             </objects>
             <point key="canvasLocation" x="-532" y="172"/>
         </scene>
-        <!--Item 2-->
+        <!--Navigation Controller-->
         <scene sceneID="9zg-1e-dRC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Gv-ZN-Pec" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="Kfm-dt-TfY"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="Kfm-dt-TfY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xAb-ZJ-sX8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

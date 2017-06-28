@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import Social
 
-class FavoriteDetailViewController: UIViewController, WKUIDelegate {
+class FavoriteDetailViewController: UIViewController, WKUIDelegate, UIGestureRecognizerDelegate {
 
     var detailWebView: WKWebView!
     var detailTitle = String()
@@ -33,11 +33,13 @@ class FavoriteDetailViewController: UIViewController, WKUIDelegate {
         let urlRequest = URLRequest(url: detailURL!)
         detailWebView.load(urlRequest)
         setupSwipeGestures()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
+        // navigationBarの生成
         let navBar = UINavigationBar(frame: CGRect(x: UIScreen.main.bounds.minX, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
         navBar.barTintColor = UIColor(red:0.05, green:0.50, blue:0.32, alpha:0.8)
         self.view.addSubview(navBar)
-        // ボタンを生成する.
+        // barButtonItemの生成
         let shareButton = UIButton(frame: CGRect(x:0,y:0,width:100,height:50))
         shareButton.tintColor = UIColor(red:0.06, green:0.47, blue:0.12, alpha:1.0)
         shareButton.layer.masksToBounds = true
@@ -48,7 +50,6 @@ class FavoriteDetailViewController: UIViewController, WKUIDelegate {
         backButton.layer.masksToBounds = true
         backButton.setTitle("＜ Top", for: .normal)
         backButton.addTarget(self, action: #selector(FavoriteDetailViewController.clickBackButton(_:)), for: .touchUpInside)
-        
         let shareBarButtonItem = UIBarButtonItem(customView: shareButton)
         let backBarButtonItem = UIBarButtonItem(customView: backButton)
         let navItem = UINavigationItem()
@@ -59,15 +60,14 @@ class FavoriteDetailViewController: UIViewController, WKUIDelegate {
     
     func setupSwipeGestures(){
         // 右方向へのスワイプ
-        let gestureToRight = UISwipeGestureRecognizer(target: self.detailWebView, action: #selector(FavoriteDetailViewController.goBack))
-        gestureToRight.direction = UISwipeGestureRecognizerDirection.right
-        self.detailWebView.addGestureRecognizer(gestureToRight)
+        let gestureToRight = UISwipeGestureRecognizer(target: self, action: #selector(FavoriteDetailViewController.goBack))
+        gestureToRight.direction = .right
+        self.view.addGestureRecognizer(gestureToRight)
         
         // 左方向へのスワイプ
-        let gestureToLeft = UISwipeGestureRecognizer(target: self.detailWebView, action: #selector(FavoriteDetailViewController.goFoward))
-        gestureToLeft.direction = UISwipeGestureRecognizerDirection.left
-        self.detailWebView.addGestureRecognizer(gestureToLeft)
-        
+        let gestureToLeft = UISwipeGestureRecognizer(target: self, action: #selector(FavoriteDetailViewController.goFoward))
+        gestureToLeft.direction = .left
+        self.view.addGestureRecognizer(gestureToLeft)
     }
     
     func goBack(){

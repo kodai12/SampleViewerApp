@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import RealmSwift
 
-class ViewController: UIViewController, WKUIDelegate {
+class ViewController: UIViewController, WKUIDelegate, UIGestureRecognizerDelegate {
     
     var mainWebView: WKWebView!
     let url = URL(string: "http://www.co-media.jp/")
@@ -33,6 +33,8 @@ class ViewController: UIViewController, WKUIDelegate {
         let urlRequest = URLRequest(url: url!)
         mainWebView.load(urlRequest)
         setupSwipeGestures()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+
     }
     
     @IBAction func clickAddFavoriteList(_ sender: Any) {
@@ -57,12 +59,12 @@ class ViewController: UIViewController, WKUIDelegate {
 
     func setupSwipeGestures(){
         // 右方向へのスワイプ
-        let gestureToRight = UISwipeGestureRecognizer(target: self.mainWebView, action: #selector(FavoriteDetailViewController.goBack))
+        let gestureToRight = UISwipeGestureRecognizer(target: self.mainWebView, action: #selector(ViewController.goBack))
         gestureToRight.direction = UISwipeGestureRecognizerDirection.right
         self.mainWebView.addGestureRecognizer(gestureToRight)
         
         // 左方向へのスワイプ
-        let gestureToLeft = UISwipeGestureRecognizer(target: self.mainWebView, action: #selector(FavoriteDetailViewController.goFoward))
+        let gestureToLeft = UISwipeGestureRecognizer(target: self.mainWebView, action: #selector(ViewController.goFoward))
         gestureToLeft.direction = UISwipeGestureRecognizerDirection.left
         self.mainWebView.addGestureRecognizer(gestureToLeft)
         
