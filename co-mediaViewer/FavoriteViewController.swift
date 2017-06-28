@@ -13,6 +13,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var favoriteListTableView: UITableView!
     var favoriteArticles:Results<FavoriteArticle>?
+    var selectedTitle = String()
     var selectedURLString = String()
 
     override func viewDidLoad() {
@@ -44,11 +45,10 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let unwrappedURLString = favoriteArticles?[indexPath.row].url{
-            print("unwrappedURLString is \(unwrappedURLString)")
+        if let unwrappedURLString = favoriteArticles?[indexPath.row].url, let unwrappedTitle = favoriteArticles?[indexPath.row].title{
             selectedURLString = unwrappedURLString
+            selectedTitle = unwrappedTitle
         }
-        print("selectedURLString is \(selectedURLString)")
         performSegue(withIdentifier: "toDetail", sender: nil)
         favoriteListTableView.deselectRow(at: indexPath, animated: true)
     }
@@ -56,6 +56,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetail"{
             let detailVC: FavoriteDetailViewController = segue.destination as! FavoriteDetailViewController
+            detailVC.detailTitle = selectedTitle
             detailVC.detailArticleURLString = selectedURLString
         }
     }

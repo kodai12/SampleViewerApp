@@ -8,11 +8,16 @@
 
 import UIKit
 import WebKit
+import Social
 
 class FavoriteDetailViewController: UIViewController, WKUIDelegate {
 
     var detailWebView: WKWebView!
+    var detailTitle = String()
     var detailArticleURLString = String()
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    var myComposeView:SLComposeViewController?
     
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
@@ -24,11 +29,32 @@ class FavoriteDetailViewController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("detailArticleURL is \(detailArticleURLString)")
         let detailURL = URL(string: (detailArticleURLString))
         let urlRequest = URLRequest(url: detailURL!)
         detailWebView.load(urlRequest)
         setupSwipeGestures()
+        
+        let navBar = UINavigationBar(frame: CGRect(x: UIScreen.main.bounds.minX, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
+        navBar.barTintColor = UIColor(red:0.05, green:0.50, blue:0.32, alpha:0.8)
+        self.view.addSubview(navBar)
+        // ボタンを生成する.
+        let shareButton = UIButton(frame: CGRect(x:0,y:0,width:100,height:50))
+        shareButton.tintColor = UIColor(red:0.06, green:0.47, blue:0.12, alpha:1.0)
+        shareButton.layer.masksToBounds = true
+        shareButton.setTitle("Share", for: .normal)
+        shareButton.addTarget(self, action: #selector(FavoriteDetailViewController.clickShareButton(_:)), for: .touchUpInside)
+        let backButton = UIButton(frame: CGRect(x:0,y:0,width:100,height:50))
+        backButton.tintColor = UIColor(red:0.06, green:0.47, blue:0.12, alpha:1.0)
+        backButton.layer.masksToBounds = true
+        backButton.setTitle("＜ Top", for: .normal)
+        backButton.addTarget(self, action: #selector(FavoriteDetailViewController.clickBackButton(_:)), for: .touchUpInside)
+        
+        let shareBarButtonItem = UIBarButtonItem(customView: shareButton)
+        let backBarButtonItem = UIBarButtonItem(customView: backButton)
+        let navItem = UINavigationItem()
+        navItem.rightBarButtonItem = shareBarButtonItem
+        navItem.leftBarButtonItem = backBarButtonItem
+        navBar.setItems([navItem], animated: false)
     }
     
     func setupSwipeGestures(){
@@ -58,6 +84,41 @@ class FavoriteDetailViewController: UIViewController, WKUIDelegate {
         } else {
             print("fail to go foward")
         }
+    }
+    
+    @IBAction func clickBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func clickShareButton(_ sender: Any) {
+        
+        let alertViewController = UIAlertController(title: "シェアしますか？", message: "", preferredStyle: .actionSheet)
+        let twitterShareAction = UIAlertAction(title: "Twitter", style: .default, handler:{ (action:UIAlertAction) -> Void in
+            self.shareTwitter()
+        })
+        let FBShareAction = UIAlertAction(title: "Facebook", style: .default, handler:{ (action:UIAlertAction) -> Void in
+            self.shareFB()
+        })
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        alertViewController.addAction(twitterShareAction)
+        alertViewController.addAction(FBShareAction)
+        alertViewController.addAction(cancelAction)
+        self.present(alertViewController, animated: true, completion: nil)
+        
+    }
+    
+    func shareTwitter(){
+        myComposeView = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+        let title = detailTitle
+        myComposeView?.setInitialText(title)
+        self.present(myComposeView!, animated: true, completion: nil)
+    }
+    
+    func shareFB(){
+        myComposeView = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        let title = detailTitle
+        myComposeView?.setInitialText(title)
+        self.present(myComposeView!, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
