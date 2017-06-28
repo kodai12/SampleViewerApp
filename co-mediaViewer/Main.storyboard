@@ -28,10 +28,10 @@
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="add to list"/>
+                                <connections>
+                                    <action selector="clickAddFavoriteList:" destination="tSb-K7-uac" eventType="touchUpInside" id="YGh-dp-HHI"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <action selector="clickAddFavoriteList:" destination="tSb-K7-uac" id="BYD-fY-ZQz"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
@@ -120,7 +120,7 @@
         <!--First Setting Tab Bar Controller-->
         <scene sceneID="xG4-zC-e3A">
             <objects>
-                <tabBarController id="tak-Yo-e3G" customClass="firstSettingTabBarController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="firstSettingTBC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tak-Yo-e3G" customClass="firstSettingTabBarController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="nAt-OJ-ing">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

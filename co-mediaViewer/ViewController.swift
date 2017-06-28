@@ -15,8 +15,8 @@ class ViewController: UIViewController, WKUIDelegate {
     var mainWebView: WKWebView!
     let url = URL(string: "http://www.co-media.jp/")
     
-    var currentURL: URL?
-    var currentTitle: String?
+    var currentURL = NSURL()
+    var currentTitle = String()
     
     var currentArticle = FavoriteArticle()
     
@@ -32,19 +32,19 @@ class ViewController: UIViewController, WKUIDelegate {
         
         let urlRequest = URLRequest(url: url!)
         mainWebView.load(urlRequest)
+        setupSwipeGestures()
     }
     
     @IBAction func clickAddFavoriteList(_ sender: Any) {
         
         // webViewからタイトル、URL、投稿日、イメージを取得
-        currentURL = mainWebView.url
-        currentTitle = mainWebView.title
-        
-        // 取得した各値をまとめてRealmDBに保存
-        if let unwrappedTitle = currentTitle, let unwrappedURL = currentURL{
-            currentArticle.title = unwrappedTitle
-            currentArticle.url = String(describing: unwrappedURL)
+        if let unwrappedURL = mainWebView.url{
+            currentURL = unwrappedURL as NSURL
         }
+        currentTitle = mainWebView.title!
+        // 取得した各値をまとめてRealmDBに保存
+        currentArticle.title = currentTitle
+        currentArticle.url = String(describing: currentURL)
         let realm = RealmModel.realm.realmTry
         try! realm.write {
             realm.add(currentArticle)
@@ -55,6 +55,36 @@ class ViewController: UIViewController, WKUIDelegate {
         
     }
 
+    func setupSwipeGestures(){
+        // 右方向へのスワイプ
+        let gestureToRight = UISwipeGestureRecognizer(target: self.mainWebView, action: #selector(FavoriteDetailViewController.goBack))
+        gestureToRight.direction = UISwipeGestureRecognizerDirection.right
+        self.mainWebView.addGestureRecognizer(gestureToRight)
+        
+        // 左方向へのスワイプ
+        let gestureToLeft = UISwipeGestureRecognizer(target: self.mainWebView, action: #selector(FavoriteDetailViewController.goFoward))
+        gestureToLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.mainWebView.addGestureRecognizer(gestureToLeft)
+        
+    }
+    
+    
+    func goBack(){
+        if self.mainWebView.canGoBack{
+            self.mainWebView.goBack()
+        } else {
+            print("fail to go back")
+        }
+    }
+    
+    func goFoward(){
+        if self.mainWebView.canGoForward{
+            self.mainWebView.goForward()
+        } else {
+            print("fail to go foward")
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

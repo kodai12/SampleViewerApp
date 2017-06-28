@@ -13,7 +13,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var favoriteListTableView: UITableView!
     var favoriteArticles:Results<FavoriteArticle>?
-    var selectedURL:String?
+    var selectedURLString = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +22,14 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         favoriteListTableView.dataSource = self
         
         loadData()
+        favoriteListTableView.reloadData()
     }
     
     func loadData(){
         
         let realm = RealmModel.realm.realmTry
         favoriteArticles = realm.objects(FavoriteArticle.self)
+        print("favoriteArticles is \(favoriteArticles)")
         
     }
     
@@ -42,9 +44,11 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let unwrappedURL = favoriteArticles?[indexPath.row].url{
-            selectedURL = unwrappedURL
+        if let unwrappedURLString = favoriteArticles?[indexPath.row].url{
+            print("unwrappedURLString is \(unwrappedURLString)")
+            selectedURLString = unwrappedURLString
         }
+        print("selectedURLString is \(selectedURLString)")
         performSegue(withIdentifier: "toDetail", sender: nil)
         favoriteListTableView.deselectRow(at: indexPath, animated: true)
     }
@@ -52,7 +56,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetail"{
             let detailVC: FavoriteDetailViewController = segue.destination as! FavoriteDetailViewController
-            detailVC.detailArticleURLString = selectedURL
+            detailVC.detailArticleURLString = selectedURLString
         }
     }
     
