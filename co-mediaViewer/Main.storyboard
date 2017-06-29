@@ -60,9 +60,13 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="196"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mNv-fR-UBE" id="nZW-TZ-TNR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="195"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="196"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bIy-Qg-ouq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="196"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQk-IX-Upq">
                                                     <rect key="frame" x="8" y="8" width="359" height="87"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -80,6 +84,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="backImageView" destination="bIy-Qg-ouq" id="el8-T9-GGB"/>
                                             <outlet property="title" destination="MQk-IX-Upq" id="qN0-BQ-UF7"/>
                                             <outlet property="url" destination="LWW-cr-qcj" id="Hzs-4M-Cdo"/>
                                         </connections>
@@ -97,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3B-mt-AFS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="420" y="-155"/>
+            <point key="canvasLocation" x="420" y="-155.17241379310346"/>
         </scene>
         <!--Favorite Detail View Controller-->
         <scene sceneID="0Cm-uu-2xY">

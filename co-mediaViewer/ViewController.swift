@@ -17,6 +17,7 @@ class ViewController: UIViewController, WKUIDelegate, UIGestureRecognizerDelegat
     
     var currentURL = NSURL()
     var currentTitle = String()
+    var currentImageURLString = String()
     
     var currentArticle = FavoriteArticle()
     
@@ -44,13 +45,24 @@ class ViewController: UIViewController, WKUIDelegate, UIGestureRecognizerDelegat
             currentURL = unwrappedURL as NSURL
         }
         currentTitle = mainWebView.title!
+        mainWebView.evaluateJavaScript("document.getElementsByTagName('meta')[7].getAttribute('content')", completionHandler: {(element,error) -> Void in
+            if element != nil{
+                if let unwrappedImageURLString = element{
+                    self.currentImageURLString = unwrappedImageURLString as! String
+                }
+            } else {
+                print("fail to get element.")
+            }
+        })
         // 取得した各値をまとめてRealmDBに保存
         currentArticle.title = currentTitle
         currentArticle.url = String(describing: currentURL)
+        currentArticle.imageString = currentImageURLString
         let realm = RealmModel.realm.realmTry
         try! realm.write {
             realm.add(currentArticle)
         }
+        
         // お気入りリストに追加後FavoriteVCに遷移
         let firstSettingTBC: firstSettingTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "firstSettingTBC") as! firstSettingTabBarController
         self.present(firstSettingTBC, animated: true, completion: nil)

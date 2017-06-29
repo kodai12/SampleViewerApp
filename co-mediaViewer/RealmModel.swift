@@ -13,6 +13,7 @@ class FavoriteArticle: Object {
     
     dynamic var url = String()
     dynamic var title = String()
+    dynamic var imageString = String()
     
 }
 

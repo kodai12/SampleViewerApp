@@ -13,6 +13,7 @@ class FavoriteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var url: UILabel!
+    @IBOutlet weak var backImageView: UIImageView!
     
     var favoriteArticleCell: FavoriteArticle?{
         didSet{
@@ -25,6 +26,8 @@ class FavoriteTableViewCell: UITableViewCell {
         if let unwrappedCell = favoriteArticleCell{
             url.text = unwrappedCell.url
             title.text = unwrappedCell.title
+            let backImageData = Data(base64Encoded: unwrappedCell.imageString, options: Data.Base64DecodingOptions.ignoreUnknownCharacters)
+            backImageView.image = UIImage(data: backImageData! as Data)
         }
         
     }

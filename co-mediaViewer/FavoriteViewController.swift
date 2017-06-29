@@ -15,6 +15,8 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     var favoriteArticles:Results<FavoriteArticle>?
     var selectedTitle = String()
     var selectedURLString = String()
+    
+    let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +26,30 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         
         loadData()
         favoriteListTableView.reloadData()
+        // UIRefreshControlの設定
+        refreshControl.attributedTitle = NSAttributedString(string: "refresh timeline")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        favoriteListTableView.addSubview(refreshControl)
+    }
+    
+    func refresh(){
+        loadData()
+        favoriteListTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func loadData(){
         
+        // マイグレーションの実行
+        let config = Realm.Configuration(
+            schemaVersion: 1,
+            migrationBlock:{migration, oldSchemaVersion in
+                if(oldSchemaVersion < 1){}
+        })
+        Realm.Configuration.defaultConfiguration = config
+        // データのロード
         let realm = RealmModel.realm.realmTry
         favoriteArticles = realm.objects(FavoriteArticle.self)
-        print("favoriteArticles is \(favoriteArticles)")
         
     }
     
