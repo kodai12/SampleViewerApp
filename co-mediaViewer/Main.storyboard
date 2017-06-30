@@ -32,17 +32,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="3m6-O4-a2m">
                         <rightBarButtonItems>
-                            <barButtonItem title="SNS" id="9ya-zq-1sg">
+                            <barButtonItem title="share" id="9ya-zq-1sg">
                                 <connections>
                                     <action selector="clickSNSBarButton:" destination="tSb-K7-uac" id="NUZ-PN-7nx"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem style="plain" id="uDF-YG-fCH">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7F8-rL-14C">
-                                    <rect key="frame" x="234" y="7" width="83" height="30"/>
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7F8-rL-14C" customClass="DesignableButton" customModule="Spring">
+                                    <rect key="frame" x="268" y="2" width="40" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <state key="normal" title="add"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <state key="normal" image="empty_heart.png"/>
                                     <connections>
                                         <action selector="clickAddFavoriteList:" destination="tSb-K7-uac" eventType="touchUpInside" id="YGh-dp-HHI"/>
                                     </connections>
@@ -51,6 +51,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="favoriteButton" destination="7F8-rL-14C" id="UGA-LI-myo"/>
                         <outlet property="mainWebView" destination="lnz-dg-h8A" id="sfC-ZV-d6Q"/>
                     </connections>
                 </viewController>
@@ -79,7 +80,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="177"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mNv-fR-UBE" id="nZW-TZ-TNR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bIy-Qg-ouq">
@@ -190,4 +191,7 @@
             <point key="canvasLocation" x="420" y="499.70014992503752"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="empty_heart.png" width="100" height="100"/>
+    </resources>
 </document>
