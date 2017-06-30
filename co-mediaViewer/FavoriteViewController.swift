@@ -41,14 +41,15 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     func loadData(){
         
         // マイグレーションの実行
-        let config = Realm.Configuration(
-            schemaVersion: 1,
-            migrationBlock:{migration, oldSchemaVersion in
+        var config = Realm.Configuration(
+            migrationBlock:{(migration, oldSchemaVersion) in
                 if(oldSchemaVersion < 1){}
+                if(oldSchemaVersion < 2){}
         })
+        config.schemaVersion = 2
         Realm.Configuration.defaultConfiguration = config
         // データのロード
-        let realm = RealmModel.realm.realmTry
+        let realm = try! Realm(configuration: config)
         favoriteArticles = realm.objects(FavoriteArticle.self)
         
     }

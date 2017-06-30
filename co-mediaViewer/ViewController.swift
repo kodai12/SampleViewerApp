@@ -7,17 +7,15 @@
 //
 
 import UIKit
-import WebKit
 import RealmSwift
 
-class ViewController: UIViewController, WKUIDelegate, UIGestureRecognizerDelegate {
+class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var mainWebView: WKWebView!
     let url = URL(string: "http://www.co-media.jp/")
     
     var currentURL = NSURL()
     var currentTitle = String()
-    var currentImageURLString = String()
     
     var currentArticle = FavoriteArticle()
     
@@ -39,26 +37,28 @@ class ViewController: UIViewController, WKUIDelegate, UIGestureRecognizerDelegat
     }
     
     @IBAction func clickAddFavoriteList(_ sender: Any) {
+        let realm = RealmModel.realm.realmTry
+        let object = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "id").last
+        if object == nil{
+            currentArticle.id = 1
+        } else {
+            currentArticle.id = (object?.id)! + 1
+        }
+        // 現在時刻の取得
+        let now = Date()
+        currentArticle.addedAt = now
         
         // webViewからタイトル、URL、投稿日、イメージを取得
         if let unwrappedURL = mainWebView.url{
             currentURL = unwrappedURL as NSURL
         }
         currentTitle = mainWebView.title!
-        mainWebView.evaluateJavaScript("document.getElementsByTagName('meta')[7].getAttribute('content')", completionHandler: {(element,error) -> Void in
-            if element != nil{
-                if let unwrappedImageURLString = element{
-                    self.currentImageURLString = unwrappedImageURLString as! String
-                }
-            } else {
-                print("fail to get element.")
-            }
-        })
+
         // 取得した各値をまとめてRealmDBに保存
         currentArticle.title = currentTitle
         currentArticle.url = String(describing: currentURL)
-        currentArticle.imageString = currentImageURLString
-        let realm = RealmModel.realm.realmTry
+        currentArticle.imageString = getImageURLString()
+        
         try! realm.write {
             realm.add(currentArticle)
         }
@@ -67,6 +67,20 @@ class ViewController: UIViewController, WKUIDelegate, UIGestureRecognizerDelegat
         let firstSettingTBC: firstSettingTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "firstSettingTBC") as! firstSettingTabBarController
         self.present(firstSettingTBC, animated: true, completion: nil)
         
+    }
+    
+    func getImageURLString() -> String{
+        var currentImageURLString = String()
+        mainWebView.evaluateJavaScript("document.getElementsByTagName('meta')[7].getAttribute('content')", completionHandler: {(element,error) -> Void in
+            DispatchQueue.main.async {
+                currentImageURLString = element as! String
+                print("passing value is completed: \(currentImageURLString)")
+            }
+        })
+        let result = mainWebView.evaluateJavaScript("document.getElementsByTagName('meta')[7].getAttribute('content')")
+        print("result: \(result)")
+        print("currentImageURLString: \(currentImageURLString)")
+        return currentImageURLString
     }
 
     func setupSwipeGestures(){

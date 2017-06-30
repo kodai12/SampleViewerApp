@@ -11,6 +11,8 @@ import RealmSwift
 
 class FavoriteArticle: Object {
     
+    dynamic var id = Int()
+    dynamic var addedAt = Date()
     dynamic var url = String()
     dynamic var title = String()
     dynamic var imageString = String()
@@ -21,7 +23,7 @@ struct RealmModel {
     
     struct realm{
         
-        static var realmTry = try!Realm()
+        static var realmTry = try! Realm()
         static var realmsset = FavoriteArticle()
         static var usersSet =  RealmModel.realm.realmTry.objects(FavoriteArticle.self)
         
