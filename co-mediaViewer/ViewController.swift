@@ -9,28 +9,23 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate {
+class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate {
     
-    var mainWebView: WKWebView!
+    @IBOutlet weak var mainWebView: UIWebView!
     let url = URL(string: "http://www.co-media.jp/")
     
-    var currentURL = NSURL()
+    var currentURLString = String()
     var currentTitle = String()
+    var currentImageURLString = String()
     
     var currentArticle = FavoriteArticle()
-    
-    override func loadView() {
-        let webConfiguration = WKWebViewConfiguration()
-        mainWebView = WKWebView(frame: .zero, configuration: webConfiguration)
-        mainWebView.uiDelegate = self
-        view = mainWebView
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let urlRequest = URLRequest(url: url!)
-        mainWebView.load(urlRequest)
+        mainWebView.loadRequest(urlRequest)
+        self.view.addSubview(mainWebView)
         setupSwipeGestures()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 
@@ -49,15 +44,21 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         currentArticle.addedAt = now
         
         // webViewからタイトル、URL、投稿日、イメージを取得
-        if let unwrappedURL = mainWebView.url{
-            currentURL = unwrappedURL as NSURL
+        if let unwrappedURLString = mainWebView.request?.url?.absoluteString{
+            currentURLString = unwrappedURLString
         }
-        currentTitle = mainWebView.title!
+        if let unwrappedTitle = mainWebView.stringByEvaluatingJavaScript(from: "document.title"){
+            currentTitle = unwrappedTitle
+        }
+        
+        if let unwrappedImageURLString = mainWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('meta')[7].getAttribute('content')"){
+            currentImageURLString = unwrappedImageURLString
+        }
 
         // 取得した各値をまとめてRealmDBに保存
         currentArticle.title = currentTitle
-        currentArticle.url = String(describing: currentURL)
-        currentArticle.imageString = getImageURLString()
+        currentArticle.url = currentURLString
+        currentArticle.imageString = currentImageURLString
         
         try! realm.write {
             realm.add(currentArticle)
@@ -67,20 +68,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let firstSettingTBC: firstSettingTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "firstSettingTBC") as! firstSettingTabBarController
         self.present(firstSettingTBC, animated: true, completion: nil)
         
-    }
-    
-    func getImageURLString() -> String{
-        var currentImageURLString = String()
-        mainWebView.evaluateJavaScript("document.getElementsByTagName('meta')[7].getAttribute('content')", completionHandler: {(element,error) -> Void in
-            DispatchQueue.main.async {
-                currentImageURLString = element as! String
-                print("passing value is completed: \(currentImageURLString)")
-            }
-        })
-        let result = mainWebView.evaluateJavaScript("document.getElementsByTagName('meta')[7].getAttribute('content')")
-        print("result: \(result)")
-        print("currentImageURLString: \(currentImageURLString)")
-        return currentImageURLString
     }
 
     func setupSwipeGestures(){

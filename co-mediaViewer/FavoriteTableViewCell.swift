@@ -26,9 +26,9 @@ class FavoriteTableViewCell: UITableViewCell {
         if let unwrappedCell = favoriteArticleCell{
             url.text = unwrappedCell.url
             title.text = unwrappedCell.title
-//            let imageURL = NSURL(string: unwrappedCell.imageString)
-//            let backImageData = NSData(contentsOf: imageURL! as URL)
-//            backImageView.image = UIImage(data: backImageData! as Data)
+            let imageURL = NSURL(string: unwrappedCell.imageString)
+            let backImageData = NSData(contentsOf: imageURL! as URL)
+            backImageView.image = UIImage(data: backImageData! as Data)
         }
         
     }
