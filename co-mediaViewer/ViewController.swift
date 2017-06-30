@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Social
 
 class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate {
     
@@ -17,8 +18,9 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
     var currentURLString = String()
     var currentTitle = String()
     var currentImageURLString = String()
-    
     var currentArticle = FavoriteArticle()
+    
+    var myComposeView:SLComposeViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +100,36 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         } else {
             print("fail to go foward")
         }
+    }
+    
+    @IBAction func clickSNSBarButton(_ sender: Any) {
+        
+        let alertViewController = UIAlertController(title: "シェアしますか？", message: "", preferredStyle: .actionSheet)
+        let twitterShareAction = UIAlertAction(title: "Twitter", style: .default, handler:{ (action:UIAlertAction) -> Void in
+            self.shareTwitter()
+        })
+        let FBShareAction = UIAlertAction(title: "Facebook", style: .default, handler:{ (action:UIAlertAction) -> Void in
+            self.shareFB()
+        })
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        alertViewController.addAction(twitterShareAction)
+        alertViewController.addAction(FBShareAction)
+        alertViewController.addAction(cancelAction)
+        self.present(alertViewController, animated: true, completion: nil)
+    }
+    
+    func shareTwitter(){
+        myComposeView = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+        let title = currentTitle
+        myComposeView?.setInitialText(title)
+        self.present(myComposeView!, animated: true, completion: nil)
+    }
+    
+    func shareFB(){
+        myComposeView = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        let title = currentTitle
+        myComposeView?.setInitialText(title)
+        self.present(myComposeView!, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
