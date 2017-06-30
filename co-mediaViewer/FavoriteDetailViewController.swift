@@ -7,31 +7,24 @@
 //
 
 import UIKit
-import WebKit
 import Social
 
-class FavoriteDetailViewController: UIViewController, WKUIDelegate, UIGestureRecognizerDelegate {
+class FavoriteDetailViewController: UIViewController, UIGestureRecognizerDelegate {
 
-    var detailWebView: WKWebView!
+    @IBOutlet weak var detailWebView: UIWebView!
     var detailTitle = String()
     var detailArticleURLString = String()
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     var myComposeView:SLComposeViewController?
     
-    override func loadView() {
-        let webConfiguration = WKWebViewConfiguration()
-        detailWebView = WKWebView(frame: .zero, configuration: webConfiguration)
-        detailWebView.uiDelegate = self
-        view = detailWebView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let detailURL = URL(string: (detailArticleURLString))
-        let urlRequest = URLRequest(url: detailURL!)
-        detailWebView.load(urlRequest)
+        let url = NSURL(string: detailArticleURLString)
+        let urlRequest = URLRequest(url: url! as URL)
+        detailWebView.loadRequest(urlRequest)
+        self.view.addSubview(detailWebView)
         setupSwipeGestures()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
