@@ -98,6 +98,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         // 保存済みの記事の場合はRealmDBから記事を削除、未保存の記事の場合はRealmDBに保存
         if favoriteArticlesURLString.contains(currentURLString){
             imageNum = 1
+            clickedButtonAnimation()
             displayImage()
             let favoriteArticles:Results<FavoriteArticle>? = realm.objects(FavoriteArticle.self)
             let favoriteArticle = favoriteArticles?.filter("url == \(currentURLString)")
@@ -106,6 +107,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
             }
         } else {
             imageNum = 0
+            clickedButtonAnimation()
             displayImage()
             try! realm.write {
                 realm.add(currentArticle)
@@ -118,6 +120,15 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         let imageArray = [coloredHeartImage,emptyHeartImage]
         let selectedImage = imageArray[imageNum]
         favoriteButton.setImage(selectedImage, for: .normal)
+    }
+    
+    func clickedButtonAnimation(){
+        favoriteButton.animation = "pop"
+        favoriteButton.curve = "spring"
+        favoriteButton.duration = 1.0
+        favoriteButton.damping = 0.1
+        favoriteButton.velocity = 0.1
+        favoriteButton.animate()
     }
 
     func setupSwipeGestures(){

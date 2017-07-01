@@ -21,6 +21,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("fileURL: \(Realm.Configuration.defaultConfiguration.fileURL!)")
         favoriteListTableView.delegate = self
         favoriteListTableView.dataSource = self
         
