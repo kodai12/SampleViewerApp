@@ -16,6 +16,8 @@
 		2B337EB31EFD0D9B0071D202 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B337EB11EFD0D9B0071D202 /* Realm.framework */; };
 		2B337EB41EFD0D9B0071D202 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B337EB21EFD0D9B0071D202 /* RealmSwift.framework */; };
 		2B4A1BF41F0668190014497D /* Spring.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4A1BF31F0668190014497D /* Spring.framework */; };
+		2B4E768C1F07A31C00344D8F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E768B1F07A31C00344D8F /* SearchViewController.swift */; };
+		2B4E768E1F07A32A00344D8F /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E768D1F07A32A00344D8F /* SearchTableViewCell.swift */; };
 		2B97814B1F02424C001D5A3B /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97814A1F02424C001D5A3B /* RealmModel.swift */; };
 		2B97814D1F0245CC001D5A3B /* firstSettingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97814C1F0245CC001D5A3B /* firstSettingTabBarController.swift */; };
 		2B97814F1F02528B001D5A3B /* FavoriteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97814E1F02528B001D5A3B /* FavoriteDetailViewController.swift */; };
@@ -39,6 +41,8 @@
 		2B337EB21EFD0D9B0071D202 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/co-mediaViewer-aiefnvbyrzfkxwfisjgkklivnqqs/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		2B337EB51EFD0DA10071D202 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		2B4A1BF31F0668190014497D /* Spring.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spring.framework; path = "../../Library/Developer/Xcode/DerivedData/co-mediaViewer-aiefnvbyrzfkxwfisjgkklivnqqs/Build/Products/Debug-iphoneos/Spring/Spring.framework"; sourceTree = "<group>"; };
+		2B4E768B1F07A31C00344D8F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		2B4E768D1F07A32A00344D8F /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		2B97814A1F02424C001D5A3B /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		2B97814C1F0245CC001D5A3B /* firstSettingTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = firstSettingTabBarController.swift; sourceTree = "<group>"; };
 		2B97814E1F02528B001D5A3B /* FavoriteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteDetailViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 				2B337E981EFBD2F90071D202 /* AppDelegate.swift */,
 				2B97814C1F0245CC001D5A3B /* firstSettingTabBarController.swift */,
 				2B337E9A1EFBD2F90071D202 /* ViewController.swift */,
+				2B4E768F1F07A33000344D8F /* SearchScreen */,
 				2B337EB01EFD0C890071D202 /* FavoriteScreen */,
 				2B97814A1F02424C001D5A3B /* RealmModel.swift */,
 				2B9781501F025FC2001D5A3B /* Main.storyboard */,
@@ -108,6 +113,15 @@
 				2B97814E1F02528B001D5A3B /* FavoriteDetailViewController.swift */,
 			);
 			name = FavoriteScreen;
+			sourceTree = "<group>";
+		};
+		2B4E768F1F07A33000344D8F /* SearchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				2B4E768B1F07A31C00344D8F /* SearchViewController.swift */,
+				2B4E768D1F07A32A00344D8F /* SearchTableViewCell.swift */,
+			);
+			name = SearchScreen;
 			sourceTree = "<group>";
 		};
 		8F16EBD8FB41D1713B38C0CC /* Pods */ = {
@@ -257,8 +271,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B4E768E1F07A32A00344D8F /* SearchTableViewCell.swift in Sources */,
 				2B97814B1F02424C001D5A3B /* RealmModel.swift in Sources */,
 				2B337E9B1EFBD2F90071D202 /* ViewController.swift in Sources */,
+				2B4E768C1F07A31C00344D8F /* SearchViewController.swift in Sources */,
 				2B97814F1F02528B001D5A3B /* FavoriteDetailViewController.swift in Sources */,
 				2B337EAD1EFD01DE0071D202 /* FavoriteTableViewCell.swift in Sources */,
 				2B337EAB1EFD00B60071D202 /* FavoriteViewController.swift in Sources */,

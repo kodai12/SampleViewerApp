@@ -50,7 +50,8 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         Realm.Configuration.defaultConfiguration = config
         // データのロード
         let realm = try! Realm(configuration: config)
-        favoriteArticles = realm.objects(FavoriteArticle.self)
+        // お気に入り追加日順でソートし、データを取り込む
+        favoriteArticles = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "addedAt",ascending: true)
         
     }
     
@@ -105,6 +106,10 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         return [deleteButton]
     }
 
+    @IBAction func clickSearchButton(_ sender: Any) {
+        performSegue(withIdentifier: "toSearchVC", sender: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
