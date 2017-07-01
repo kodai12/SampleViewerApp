@@ -103,6 +103,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
             try! realm.write {
                 realm.delete(favoriteArticle!)
             }
+            alertByCancelFavorited()
         } else {
             imageNum = 0
             clickedButtonAnimation()
@@ -127,6 +128,14 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         favoriteButton.damping = 0.1
         favoriteButton.velocity = 0.1
         favoriteButton.animate()
+    }
+    
+    // お気に入り済み記事を削除した後にアラートを表示
+    func alertByCancelFavorited(){
+        let alertViewController = UIAlertController(title: "お気に入りリストから削除しました", message: "お気に入りに再度追加する場合はお気に入りボタンを押してください", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertViewController.addAction(confirmAction)
+        self.present(alertViewController, animated: true, completion: nil)
     }
 
     func setupSwipeGestures(){
