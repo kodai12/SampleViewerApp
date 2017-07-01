@@ -102,15 +102,19 @@ class FavoriteDetailViewController: UIViewController, UIGestureRecognizerDelegat
     
     func shareTwitter(){
         myComposeView = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-        let title = detailTitle
-        myComposeView?.setInitialText(title)
+        let shareTitle = detailTitle
+        let shareURL:URL = URL(string: detailArticleURLString)!
+        myComposeView?.setInitialText(shareTitle)
+        myComposeView?.add(shareURL)
         self.present(myComposeView!, animated: true, completion: nil)
     }
     
     func shareFB(){
         myComposeView = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-        let title = detailTitle
-        myComposeView?.setInitialText(title)
+        let shareTitle = detailTitle
+        let shareURL:URL = URL(string: detailArticleURLString)!
+        myComposeView?.setInitialText(shareTitle)
+        myComposeView?.add(shareURL)
         self.present(myComposeView!, animated: true, completion: nil)
     }
 

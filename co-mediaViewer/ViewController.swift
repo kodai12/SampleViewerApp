@@ -14,7 +14,7 @@ import Spring
 class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var mainWebView: UIWebView!
-    let url = URL(string: "http://www.co-media.jp/")
+    let baseURL = URL(string: "http://www.co-media.jp/")
     
     // 画面に表示中の記事の情報を格納する変数
     var currentURLString = String()
@@ -35,7 +35,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         super.viewDidLoad()
         
         mainWebView.delegate = self
-        let urlRequest = URLRequest(url: url!)
+        let urlRequest = URLRequest(url: baseURL!)
         mainWebView.loadRequest(urlRequest)
         self.view.addSubview(mainWebView)
         setupSwipeGestures()
@@ -49,9 +49,19 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
     
     func webViewDidStartLoad(_ webView: UIWebView) {
         
+        // webViewからタイトル、URL、投稿日、イメージを取得
         if let unwrappedURLString = mainWebView.request?.url?.absoluteString{
             currentURLString = unwrappedURLString
         }
+        if let unwrappedTitle = mainWebView.stringByEvaluatingJavaScript(from: "document.title"){
+            currentTitle = unwrappedTitle
+        }
+        
+        if let unwrappedImageURLString = mainWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('meta')[7].getAttribute('content')"){
+            currentImageURLString = unwrappedImageURLString
+        }
+        
+        // 表示されている記事がfavoriteListに含まれているかチェックしてfavoriteButtonのimageを設定
         if favoriteArticlesURLString.contains(currentURLString){
             imageNum = 0
             displayImage()
@@ -76,18 +86,6 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         // 現在時刻の取得
         let now = Date()
         currentArticle.addedAt = now
-        
-        // webViewからタイトル、URL、投稿日、イメージを取得
-        if let unwrappedURLString = mainWebView.request?.url?.absoluteString{
-            currentURLString = unwrappedURLString
-        }
-        if let unwrappedTitle = mainWebView.stringByEvaluatingJavaScript(from: "document.title"){
-            currentTitle = unwrappedTitle
-        }
-        
-        if let unwrappedImageURLString = mainWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('meta')[7].getAttribute('content')"){
-            currentImageURLString = unwrappedImageURLString
-        }
 
         // 取得した各値をまとめてRealmDBに保存
         currentArticle.title = currentTitle
@@ -178,15 +176,19 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
     
     func shareTwitter(){
         myComposeView = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-        let title = currentTitle
-        myComposeView?.setInitialText(title)
+        let shareTitle = currentTitle
+        let shareURL:URL = URL(string: currentURLString)!
+        myComposeView?.setInitialText(shareTitle)
+        myComposeView?.add(shareURL)
         self.present(myComposeView!, animated: true, completion: nil)
     }
     
     func shareFB(){
         myComposeView = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-        let title = currentTitle
-        myComposeView?.setInitialText(title)
+        let shareTitle = currentTitle
+        let shareURL:URL = URL(string: currentURLString)!
+        myComposeView?.setInitialText(shareTitle)
+        myComposeView?.add(shareURL)
         self.present(myComposeView!, animated: true, completion: nil)
     }
     
