@@ -27,35 +27,45 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
     var myComposeView:SLComposeViewController?
 
     @IBOutlet weak var favoriteButton: DesignableButton!
-    let emptyHeartImage:UIImage = UIImage(named:"empty_heart")!
-    let coloredHeartImage:UIImage = UIImage(named:"colored_heart")!
+    let emptyHeartImage = UIImage(named:"empty_heart.png")!
+    let coloredHeartImage = UIImage(named:"colored_heart.png")!
     var imageNum = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mainWebView.delegate = self
         let urlRequest = URLRequest(url: url!)
         mainWebView.loadRequest(urlRequest)
         self.view.addSubview(mainWebView)
         setupSwipeGestures()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 
-        let realm = try! Realm()
+        guard let realm = try? Realm() else{
+            return
+        }
         favoriteArticlesURLString = realm.objects(FavoriteArticle.self).value(forKey: "url") as! [String]
+    }
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        
+        if let unwrappedURLString = mainWebView.request?.url?.absoluteString{
+            currentURLString = unwrappedURLString
+        }
         if favoriteArticlesURLString.contains(currentURLString){
-            favoriteButton.setImage(coloredHeartImage, for: .normal)
+            imageNum = 0
+            displayImage()
         } else {
-            favoriteButton.setImage(emptyHeartImage, for: .normal)
+            imageNum = 1
+            displayImage()
         }
     }
     
     @IBAction func clickAddFavoriteList(_ sender: Any) {
-        // お気に入り済みの記事だった場合アラートを表示
-        guard favoriteArticlesURLString.contains(currentURLString) else {
-            AlertByDuplicateFavorite()
+        guard let realm = try? Realm() else{
+            print("can't complete realm setting.")
             return
         }
-        let realm = RealmModel.realm.realmTry
         // 記事のidを生成
         let object = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "id").last
         if object == nil{
@@ -84,22 +94,24 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         currentArticle.url = currentURLString
         currentArticle.imageString = currentImageURLString
         
-        try! realm.write {
-            realm.add(currentArticle)
-        }
-        
-        // お気入りリストに追加後FavoriteVCに遷移
-        let firstSettingTBC: firstSettingTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "firstSettingTBC") as! firstSettingTabBarController
-        self.present(firstSettingTBC, animated: true, completion: nil)
-        
-        // クリック時にハートボタンの色を変更
+        // クリックに応じてボタンの色を変更させる
+        // 保存済みの記事の場合はRealmDBから記事を削除、未保存の記事の場合はRealmDBに保存
         if favoriteArticlesURLString.contains(currentURLString){
-            imageNum = 0
-            displayImage()
-        } else {
             imageNum = 1
             displayImage()
+            let favoriteArticles:Results<FavoriteArticle>? = realm.objects(FavoriteArticle.self)
+            let favoriteArticle = favoriteArticles?.filter("url == \(currentURLString)")
+            try! realm.write {
+                realm.delete(favoriteArticle!)
+            }
+        } else {
+            imageNum = 0
+            displayImage()
+            try! realm.write {
+                realm.add(currentArticle)
+            }
         }
+
     }
 
     func displayImage(){
@@ -108,13 +120,6 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         favoriteButton.setImage(selectedImage, for: .normal)
     }
 
-    func AlertByDuplicateFavorite(){
-        let alertViewController = UIAlertController(title: "お気に入りできません", message: "この記事はすでにお気に入りリストに追加されています。", preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertViewController.addAction(confirmAction)
-        self.present(alertViewController, animated: true, completion: nil)
-    }
-    
     func setupSwipeGestures(){
         // 右方向へのスワイプ
         let gestureToRight = UISwipeGestureRecognizer(target: self.mainWebView, action: #selector(ViewController.goBack))
@@ -172,6 +177,22 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         let title = currentTitle
         myComposeView?.setInitialText(title)
         self.present(myComposeView!, animated: true, completion: nil)
+    }
+    
+    @IBAction func clickBackButton(_ sender: Any) {
+        if self.mainWebView.canGoBack{
+            self.mainWebView.goBack()
+        } else {
+            print("fail to go back")
+        }
+    }
+    
+    @IBAction func clickForwardButton(_ sender: Any) {
+        if self.mainWebView.canGoForward{
+            self.mainWebView.goForward()
+        } else {
+            print("fail to go foward")
+        }
     }
     
     override func didReceiveMemoryWarning() {

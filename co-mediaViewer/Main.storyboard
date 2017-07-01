@@ -15,15 +15,15 @@
             <objects>
                 <viewController id="tSb-K7-uac" customClass="ViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="sOy-ma-tvX"/>
-                        <viewControllerLayoutGuide type="bottom" id="1au-qe-hbP"/>
+                        <viewControllerLayoutGuide type="top" id="YFb-1X-ZRK"/>
+                        <viewControllerLayoutGuide type="bottom" id="qve-F3-CeL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lrj-TX-CBf">
+                    <view key="view" contentMode="scaleToFill" id="Res-fP-2n4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lnz-dg-h8A">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bGj-ai-Mgo">
+                                <rect key="frame" x="0.0" y="72" width="375" height="546"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
@@ -31,15 +31,34 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="3m6-O4-a2m">
-                        <rightBarButtonItems>
-                            <barButtonItem title="share" id="9ya-zq-1sg">
-                                <connections>
-                                    <action selector="clickSNSBarButton:" destination="tSb-K7-uac" id="NUZ-PN-7nx"/>
-                                </connections>
+                        <leftBarButtonItems>
+                            <barButtonItem style="plain" id="AKn-vr-LlH">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="igc-93-nDW">
+                                    <rect key="frame" x="16" y="14" width="20" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <state key="normal" title="＜"/>
+                                    <connections>
+                                        <action selector="clickBackButton:" destination="tSb-K7-uac" eventType="touchUpInside" id="ac4-tP-J5F"/>
+                                    </connections>
+                                </button>
                             </barButtonItem>
+                            <barButtonItem style="plain" id="Fp4-W1-SCv">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="crg-il-Jqv">
+                                    <rect key="frame" x="44" y="14" width="21" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <state key="normal" title="＞"/>
+                                    <connections>
+                                        <action selector="clickForwardButton:" destination="tSb-K7-uac" eventType="touchUpInside" id="XCg-ed-P41"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <rightBarButtonItems>
                             <barButtonItem style="plain" id="uDF-YG-fCH">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7F8-rL-14C" customClass="DesignableButton" customModule="Spring">
-                                    <rect key="frame" x="268" y="2" width="40" height="40"/>
+                                    <rect key="frame" x="324" y="4" width="35" height="35"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <state key="normal" image="empty_heart.png"/>
@@ -48,11 +67,16 @@
                                     </connections>
                                 </button>
                             </barButtonItem>
+                            <barButtonItem title="share" id="9ya-zq-1sg">
+                                <connections>
+                                    <action selector="clickSNSBarButton:" destination="tSb-K7-uac" id="NUZ-PN-7nx"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="favoriteButton" destination="7F8-rL-14C" id="UGA-LI-myo"/>
-                        <outlet property="mainWebView" destination="lnz-dg-h8A" id="sfC-ZV-d6Q"/>
+                        <outlet property="mainWebView" destination="bGj-ai-Mgo" id="DsS-W3-Ttf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A3t-5n-8WX" userLabel="First Responder" sceneMemberID="firstResponder"/>
