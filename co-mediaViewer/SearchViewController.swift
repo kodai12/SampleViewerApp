@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -17,20 +18,53 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     var searchedWordArray = [String]()
     var exampleWord = ["あ","鹿児島","宮崎","コーヒー","プログラミング"]
     
+    var SearchedArticles:Results<FavoriteArticle>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         searchBar.delegate = self
         pastSearchedTableView.delegate = self
         pastSearchedTableView.dataSource = self
+        
         searchedWordArray = exampleWord
+        updateSearchedResult()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
         searchWord = searchBar.text
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        clearSearchBar()
+        searchBar.resignFirstResponder()
     }
 
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.setShowsCancelButton(searchText.characters.count > 0, animated: true)
+    }
+
+    func clearSearchBar(){
+        searchBar.text = ""
+        self.searchBar(searchBar,textDidChange: "")
+    }
+    
+    func updateSearchedResult(){
+        guard let realm = try? Realm() else {
+            print("can't get realm instance")
+            return
+        }
+        
+        SearchedArticles = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "id", ascending: false)
+        if let searchBar = searchBar, let queries = searchBar.text?.components(separatedBy: CharacterSet.whitespaces){
+            for query in queries{
+                SearchedArticles = SearchedArticles?.filter("text CONTAINS[c] %@", query)
+            }
+        }
+        self.SearchedArticles = SearchedArticles
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchedWordArray.count
     }
