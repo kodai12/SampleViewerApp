@@ -14,7 +14,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var pastSearchedTableView: UITableView!
     
-    var searchWord: String?
+    var searchWords = [String]()
     var searchedWordArray = [String]()
     var exampleWord = ["あ","鹿児島","宮崎","コーヒー","プログラミング"]
     
@@ -28,12 +28,24 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         pastSearchedTableView.dataSource = self
         
         searchedWordArray = exampleWord
-        updateSearchedResult()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchWord = searchBar.text
+        if searchBar.text != nil{
+            searchWords = (searchBar.text?.components(separatedBy: CharacterSet.whitespaces))!
+        } else{
+            print("fail to get search text")
+        }
+        updateSearchedResult()
         searchBar.resignFirstResponder()
+        performSegue(withIdentifier: "toSearchedResult", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toSearchedResult"{
+            let searchedResultVC: SearchedResultViewController = segue.destination as! SearchedResultViewController
+            searchedResultVC.searchedResults = SearchedArticles
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -52,17 +64,14 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     
     func updateSearchedResult(){
         guard let realm = try? Realm() else {
-            print("can't get realm instance")
+            print("fail to get realm instance")
             return
         }
         
         SearchedArticles = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "id", ascending: false)
-        if let searchBar = searchBar, let queries = searchBar.text?.components(separatedBy: CharacterSet.whitespaces){
-            for query in queries{
-                SearchedArticles = SearchedArticles?.filter("text CONTAINS[c] %@", query)
-            }
+        for searchWord in searchWords{
+            SearchedArticles = SearchedArticles?.filter("title CONTAINS[c] %@", searchWord)
         }
-        self.SearchedArticles = SearchedArticles
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,10 +85,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         return cell
     }
     
-    @IBAction func clickCancelButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

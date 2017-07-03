@@ -20,6 +20,7 @@
 		2B4E768E1F07A32A00344D8F /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E768D1F07A32A00344D8F /* SearchTableViewCell.swift */; };
 		2B614E6D1F08F947007060D8 /* SearchedResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B614E6C1F08F947007060D8 /* SearchedResultViewController.swift */; };
 		2B614E6F1F08F97F007060D8 /* SearchedResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B614E6E1F08F97F007060D8 /* SearchedResultTableViewCell.swift */; };
+		2B614E711F0A27A2007060D8 /* スクリーンショット 2017-07-03 16.19.32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B614E701F0A27A1007060D8 /* スクリーンショット 2017-07-03 16.19.32.png */; };
 		2B97814B1F02424C001D5A3B /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97814A1F02424C001D5A3B /* RealmModel.swift */; };
 		2B97814D1F0245CC001D5A3B /* firstSettingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97814C1F0245CC001D5A3B /* firstSettingTabBarController.swift */; };
 		2B97814F1F02528B001D5A3B /* FavoriteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97814E1F02528B001D5A3B /* FavoriteDetailViewController.swift */; };
@@ -47,6 +48,7 @@
 		2B4E768D1F07A32A00344D8F /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		2B614E6C1F08F947007060D8 /* SearchedResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchedResultViewController.swift; sourceTree = "<group>"; };
 		2B614E6E1F08F97F007060D8 /* SearchedResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchedResultTableViewCell.swift; sourceTree = "<group>"; };
+		2B614E701F0A27A1007060D8 /* スクリーンショット 2017-07-03 16.19.32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "スクリーンショット 2017-07-03 16.19.32.png"; sourceTree = "<group>"; };
 		2B97814A1F02424C001D5A3B /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		2B97814C1F0245CC001D5A3B /* firstSettingTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = firstSettingTabBarController.swift; sourceTree = "<group>"; };
 		2B97814E1F02528B001D5A3B /* FavoriteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteDetailViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				2B337EA11EFBD2F90071D202 /* LaunchScreen.storyboard */,
 				2BFAD4711F0669A4004E7548 /* empty_heart.png */,
 				2BFAD4731F0669AD004E7548 /* colored_heart.png */,
+				2B614E701F0A27A1007060D8 /* スクリーンショット 2017-07-03 16.19.32.png */,
 				2B337EA41EFBD2F90071D202 /* Info.plist */,
 			);
 			path = "co-mediaViewer";
@@ -216,6 +219,7 @@
 			files = (
 				2BFAD4721F0669A4004E7548 /* empty_heart.png in Resources */,
 				2B9781511F025FC2001D5A3B /* Main.storyboard in Resources */,
+				2B614E711F0A27A2007060D8 /* スクリーンショット 2017-07-03 16.19.32.png in Resources */,
 				2BFAD4741F0669AD004E7548 /* colored_heart.png in Resources */,
 				2B337EA31EFBD2F90071D202 /* LaunchScreen.storyboard in Resources */,
 				2B337EA01EFBD2F90071D202 /* Assets.xcassets in Resources */,
