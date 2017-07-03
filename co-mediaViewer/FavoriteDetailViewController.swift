@@ -41,7 +41,7 @@ class FavoriteDetailViewController: UIViewController, UIGestureRecognizerDelegat
         let backButton = UIButton(frame: CGRect(x:0,y:0,width:100,height:50))
         backButton.tintColor = UIColor(red:0.06, green:0.47, blue:0.12, alpha:1.0)
         backButton.layer.masksToBounds = true
-        backButton.setTitle("＜ Top", for: .normal)
+        backButton.setTitle("＜ Back", for: .normal)
         backButton.addTarget(self, action: #selector(FavoriteDetailViewController.clickBackButton(_:)), for: .touchUpInside)
         let shareBarButtonItem = UIBarButtonItem(customView: shareButton)
         let backBarButtonItem = UIBarButtonItem(customView: backButton)

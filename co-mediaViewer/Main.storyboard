@@ -251,7 +251,7 @@
         <!--Favorite Detail View Controller-->
         <scene sceneID="0Cm-uu-2xY">
             <objects>
-                <viewController id="MVG-lS-L8X" customClass="FavoriteDetailViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favoriteDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MVG-lS-L8X" customClass="FavoriteDetailViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mNO-V9-m1N"/>
                         <viewControllerLayoutGuide type="bottom" id="vMj-pi-Ryx"/>
@@ -408,6 +408,7 @@
                     <connections>
                         <outlet property="searchBar" destination="2d4-9S-Zjq" id="WV8-9m-1ue"/>
                         <outlet property="searchedResultTableView" destination="D72-l2-Uig" id="gqO-DG-LtI"/>
+                        <segue destination="MVG-lS-L8X" kind="presentation" identifier="fromSearchScreentoDetail" id="mII-H5-xtE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0XE-zx-Qzn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -419,4 +420,7 @@
         <image name="empty_heart.png" width="100" height="100"/>
         <image name="スクリーンショット 2017-07-03 16.19.32.png" width="58" height="49"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="mII-H5-xtE"/>
+    </inferredMetricsTieBreakers>
 </document>

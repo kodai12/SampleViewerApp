@@ -14,14 +14,18 @@ class SearchedResultTableViewCell: UITableViewCell {
     @IBOutlet weak var searchedTitle: UILabel!
     @IBOutlet weak var searchedURL: UILabel!
     
-    var getImageURLString: String?
-    var getTitle: String?
-    var getURLString: String?
+    var searchedResult: FavoriteArticle?{
+        didSet{
+            updateCellUI()
+        }
+    }
     
     func updateCellUI(){
-        searchedTitle.text = getTitle
-        searchedURL.text = getURLString
-        if let unwrappedImageURLString = getImageURLString{
+        if let unwrappedTitle = searchedResult?.title, let unwrappedURL = searchedResult?.url{
+            searchedTitle.text = unwrappedTitle
+            searchedURL.text = unwrappedURL
+        }
+        if let unwrappedImageURLString = searchedResult?.imageString{
             let imageURL = NSURL(string: unwrappedImageURLString)
             let backImageData = NSData(contentsOf: imageURL! as URL)
             searchedImageView.image = UIImage(data: backImageData! as Data)

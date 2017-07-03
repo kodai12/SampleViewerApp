@@ -9,10 +9,13 @@
 import UIKit
 import RealmSwift
 
-class SearchedResultViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+class SearchedResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var searchedResultTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    var selectedTitle = String()
+    var selectedURLString = String()
     
     var searchWords = [String]()
     var searchedResults: Results<FavoriteArticle>?
@@ -21,6 +24,7 @@ class SearchedResultViewController: UIViewController, UITableViewDataSource, UIS
         super.viewDidLoad()
 
         searchBar.delegate = self
+        searchedResultTableView.delegate = self
         searchedResultTableView.dataSource = self
         
         searchedResultTableView.reloadData()
@@ -77,14 +81,53 @@ class SearchedResultViewController: UIViewController, UITableViewDataSource, UIS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SearchedResultTableViewCell = tableView.dequeueReusableCell(withIdentifier: "searchedCell") as! SearchedResultTableViewCell
         if let unwrappedResults = searchedResults{
-            let searchedResult = unwrappedResults[indexPath.row]
-            cell.getTitle = searchedResult.title
-            cell.getURLString = searchedResult.url
-            cell.getImageURLString = searchedResult.imageString
+            cell.searchedResult = unwrappedResults[indexPath.row]
         }
-        cell.updateCellUI()
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let unwrappedURLString = searchedResults?[indexPath.row].url, let unwrappedTitle = searchedResults?[indexPath.row].title{
+            selectedTitle = unwrappedTitle
+            selectedURLString = unwrappedURLString
+        }
+        print("selectedURLString: \(selectedURLString)")
+        performSegue(withIdentifier: "fromSearchScreentoDetail", sender: nil)
+        searchedResultTableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromSearchScreentoDetail"{
+            let detailVC: FavoriteDetailViewController = segue.destination as! FavoriteDetailViewController
+            detailVC.detailTitle = selectedTitle
+            detailVC.detailArticleURLString = selectedURLString
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            let realm = RealmModel.realm.realmTry
+            try! realm.write {
+                realm.delete(RealmModel.realm.usersSet[indexPath.row])
+            }
+            searchedResultTableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "delete") { (action, index) -> Void in
+            let realm = RealmModel.realm.realmTry
+            try! realm.write {
+                realm.delete(RealmModel.realm.usersSet[indexPath.row])
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        deleteButton.backgroundColor = UIColor.red
+        
+        return [deleteButton]
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
