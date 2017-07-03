@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class SearchedResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class SearchedResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var searchedResultTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -27,7 +27,27 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         searchedResultTableView.delegate = self
         searchedResultTableView.dataSource = self
         
-        searchedResultTableView.reloadData()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        // navigationBarの生成
+        let navBar = UINavigationBar(frame: CGRect(x: UIScreen.main.bounds.minX, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
+        navBar.barTintColor = UIColor(red:0.05, green:0.50, blue:0.32, alpha:0.8)
+        self.view.addSubview(navBar)
+        // barButtonItemの生成
+        let backButton = UIButton(frame: CGRect(x:0,y:0,width:100,height:50))
+        backButton.tintColor = UIColor(red:0.06, green:0.47, blue:0.12, alpha:1.0)
+        backButton.layer.masksToBounds = true
+        backButton.setTitle("＜ Back", for: .normal)
+        backButton.addTarget(self, action: #selector(SearchedResultViewController.clickBackButton), for: .touchUpInside)
+        let backBarButtonItem = UIBarButtonItem(customView: backButton)
+        let navItem = UINavigationItem()
+        navItem.leftBarButtonItem = backBarButtonItem
+        navBar.setItems([navItem], animated: false)
+    }
+    
+    func clickBackButton(){
+        let searchVC: SearchViewController = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
+        present(searchVC, animated: false, completion: nil)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var pastSearchedTableView: UITableView!
@@ -28,6 +28,28 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         pastSearchedTableView.dataSource = self
         
         searchedWordArray = exampleWord
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        // navigationBarの生成
+        let navBar = UINavigationBar(frame: CGRect(x: UIScreen.main.bounds.minX, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
+        navBar.barTintColor = UIColor(red:0.05, green:0.50, blue:0.32, alpha:0.8)
+        self.view.addSubview(navBar)
+        // barButtonItemの生成
+        let backButton = UIButton(frame: CGRect(x:0,y:0,width:100,height:50))
+        backButton.tintColor = UIColor(red:0.06, green:0.47, blue:0.12, alpha:1.0)
+        backButton.layer.masksToBounds = true
+        backButton.setTitle("＜ Back", for: .normal)
+        backButton.addTarget(self, action: #selector(SearchedResultViewController.clickBackButton), for: .touchUpInside)
+        let backBarButtonItem = UIBarButtonItem(customView: backButton)
+        let navItem = UINavigationItem()
+        navItem.leftBarButtonItem = backBarButtonItem
+        navBar.setItems([navItem], animated: false)
+    }
+    
+    func clickBackButton(){
+        let firstSettingTBC: firstSettingTabBarController = storyboard?.instantiateViewController(withIdentifier: "firstSettingTBC") as! firstSettingTabBarController
+        present(firstSettingTBC, animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

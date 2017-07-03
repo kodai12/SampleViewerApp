@@ -86,7 +86,7 @@
         <!--Search View Controller-->
         <scene sceneID="3Mm-8T-r3X">
             <objects>
-                <viewController id="7Gh-Ey-CVh" customClass="SearchViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="searchVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7Gh-Ey-CVh" customClass="SearchViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wsy-dT-lFG"/>
                         <viewControllerLayoutGuide type="bottom" id="mZK-Rc-BCd"/>
@@ -160,7 +160,7 @@
         <!--favorite list-->
         <scene sceneID="6TU-IE-iIc">
             <objects>
-                <viewController id="3py-1p-TtA" customClass="FavoriteViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favoriteVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3py-1p-TtA" customClass="FavoriteViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YD4-hl-xQn"/>
                         <viewControllerLayoutGuide type="bottom" id="a35-MU-W4o"/>
@@ -421,6 +421,6 @@
         <image name="スクリーンショット 2017-07-03 16.19.32.png" width="58" height="49"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mII-H5-xtE"/>
+        <segue reference="EfG-5h-dBd"/>
     </inferredMetricsTieBreakers>
 </document>
