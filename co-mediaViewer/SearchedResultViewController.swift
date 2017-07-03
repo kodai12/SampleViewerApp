@@ -22,8 +22,15 @@ class SearchedResultViewController: UIViewController, UITableViewDataSource, UIS
 
         searchBar.delegate = self
         searchedResultTableView.dataSource = self
+        
+        searchedResultTableView.reloadData()
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if searchBar.isFirstResponder{
+            searchBar.resignFirstResponder()
+        }
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text != nil{
@@ -33,14 +40,8 @@ class SearchedResultViewController: UIViewController, UITableViewDataSource, UIS
         }
         updateSearchedResult()
         searchBar.resignFirstResponder()
+        searchedResultTableView.reloadData()
         
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toSearchedResult"{
-            let searchedResultVC: SearchedResultViewController = segue.destination as! SearchedResultViewController
-            searchedResultVC.searchedResults = SearchedArticles
-        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -63,9 +64,9 @@ class SearchedResultViewController: UIViewController, UITableViewDataSource, UIS
             return
         }
         
-        SearchedArticles = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "id", ascending: false)
+        searchedResults = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "id", ascending: false)
         for searchWord in searchWords{
-            SearchedArticles = SearchedArticles?.filter("title CONTAINS[c] %@", searchWord)
+            searchedResults = searchedResults?.filter("title CONTAINS[c] %@", searchWord)
         }
     }
     

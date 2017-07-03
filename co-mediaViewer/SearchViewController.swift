@@ -30,6 +30,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         searchedWordArray = exampleWord
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if searchBar.isFirstResponder{
+            searchBar.resignFirstResponder()
+        }
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text != nil{
             searchWords = (searchBar.text?.components(separatedBy: CharacterSet.whitespaces))!
