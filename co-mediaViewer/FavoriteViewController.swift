@@ -45,8 +45,10 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
             migrationBlock:{(migration, oldSchemaVersion) in
                 if(oldSchemaVersion < 1){}
                 if(oldSchemaVersion < 2){}
+                if(oldSchemaVersion < 3){}
+                if(oldSchemaVersion < 4){}
         })
-        config.schemaVersion = 2
+        config.schemaVersion = 4
         Realm.Configuration.defaultConfiguration = config
         // データのロード
         let realm = try! Realm(configuration: config)

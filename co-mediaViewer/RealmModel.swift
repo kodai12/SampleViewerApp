@@ -16,6 +16,21 @@ class FavoriteArticle: Object {
     dynamic var url = String()
     dynamic var title = String()
     dynamic var imageString = String()
+
+    override static func indexedProperties() -> [String]{
+        return ["title"]
+    }
+}
+
+class SearchWord: Object {
+    
+    dynamic var id = Int()
+    dynamic var word = String()
+    dynamic var date = Date()
+    
+    override static func indexedProperties() -> [String]{
+        return ["word"]
+    }
     
 }
 
@@ -28,5 +43,5 @@ struct RealmModel {
         static var usersSet =  RealmModel.realm.realmTry.objects(FavoriteArticle.self)
         
     }
-    
+
 }

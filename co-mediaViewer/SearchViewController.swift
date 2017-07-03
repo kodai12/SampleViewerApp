@@ -15,8 +15,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     @IBOutlet weak var pastSearchedTableView: UITableView!
     
     var searchWords = [String]()
-    var searchedWordArray = [String]()
-    var exampleWord = ["あ","鹿児島","宮崎","コーヒー","プログラミング"]
+    var pastSearchedWords: Results<SearchWord>?
     
     var SearchedArticles:Results<FavoriteArticle>?
     
@@ -26,8 +25,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         searchBar.delegate = self
         pastSearchedTableView.delegate = self
         pastSearchedTableView.dataSource = self
-        
-        searchedWordArray = exampleWord
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
@@ -45,6 +42,25 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         let navItem = UINavigationItem()
         navItem.leftBarButtonItem = backBarButtonItem
         navBar.setItems([navItem], animated: false)
+    }
+    
+    func loadSearchHistory(){
+        // マイグレーションの実行
+        var config = Realm.Configuration(
+            migrationBlock:{(migration, oldSchemaVersion) in
+                if(oldSchemaVersion < 1){}
+                if(oldSchemaVersion < 2){}
+                if(oldSchemaVersion < 3){}
+                if(oldSchemaVersion < 4){}
+        })
+        config.schemaVersion = 4
+        Realm.Configuration.defaultConfiguration = config
+        
+        guard let realm = try? Realm(configuration: config) else{
+            return
+        }
+        pastSearchedWords = realm.objects(SearchWord.self).sorted(byKeyPath: "date", ascending: false)
+        
     }
     
     func clickBackButton(){
@@ -103,12 +119,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchedWordArray.count
+        if pastSearchedWords == nil{
+            return 0
+        } else {
+            return pastSearchedWords!.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "searchWordCell") as! SearchTableViewCell
-        cell.searchedWord = searchedWordArray[indexPath.row]
+        cell.searchedWord = (pastSearchedWords?[indexPath.row].word)!
         cell.updateCellUI()
         return cell
     }
