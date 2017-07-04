@@ -40,14 +40,15 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         self.view.addSubview(mainWebView)
         setupSwipeGestures()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+    }
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
 
         guard let realm = try? Realm() else{
             return
         }
         favoriteArticlesURLString = realm.objects(FavoriteArticle.self).value(forKey: "url") as! [String]
-    }
-    
-    func webViewDidStartLoad(_ webView: UIWebView) {
         
         // webViewからタイトル、URL、投稿日、イメージを取得
         if let unwrappedURLString = mainWebView.request?.url?.absoluteString{
@@ -69,6 +70,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
             imageNum = 1
             displayImage()
         }
+        
     }
     
     @IBAction func clickAddFavoriteList(_ sender: Any) {
@@ -76,22 +78,6 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
             print("can't complete realm setting.")
             return
         }
-        // 記事のidを生成
-        let object = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "id").last
-        if object == nil{
-            currentArticle.id = 1
-        } else {
-            currentArticle.id = (object?.id)! + 1
-        }
-        // 現在時刻の取得
-        let now = Date()
-        currentArticle.addedAt = now
-
-        // 取得した各値をまとめてRealmDBに保存
-        currentArticle.title = currentTitle
-        currentArticle.url = currentURLString
-        currentArticle.imageString = currentImageURLString
-        
         // クリックに応じてボタンの色を変更させる
         // 保存済みの記事の場合はRealmDBから記事を削除、未保存の記事の場合はRealmDBに保存
         if favoriteArticlesURLString.contains(currentURLString){
@@ -113,11 +99,25 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
             imageNum = 0
             clickedButtonAnimation()
             displayImage()
+            // 記事のidを生成
+            let object = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "id").last
+            if object == nil{
+                currentArticle.id = 1
+            } else {
+                currentArticle.id = (object?.id)! + 1
+            }
+            // 現在時刻の取得
+            let now = Date()
+            currentArticle.addedAt = now
+            
+            // 取得した各値をまとめてRealmDBに保存
+            currentArticle.title = currentTitle
+            currentArticle.url = currentURLString
+            currentArticle.imageString = currentImageURLString
             try! realm.write {
                 realm.add(currentArticle)
             }
         }
-
     }
 
     func displayImage(){

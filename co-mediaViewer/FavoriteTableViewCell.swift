@@ -30,7 +30,6 @@ class FavoriteTableViewCell: UITableViewCell {
             let backImageData = NSData(contentsOf: imageURL!)
             backImageView.image = UIImage(data: backImageData! as Data)
         }
-        
     }
 
     override func awakeFromNib() {
