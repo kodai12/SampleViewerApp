@@ -99,11 +99,16 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
             clickedButtonAnimation()
             displayImage()
             let favoriteArticles:Results<FavoriteArticle>? = realm.objects(FavoriteArticle.self)
-            let favoriteArticle = favoriteArticles?.filter("url == \(currentURLString)")
-            try! realm.write {
-                realm.delete(favoriteArticle!)
+            let favoriteArticle = favoriteArticles?.filter("url == %@", currentURLString)
+            print("favoriteArticle: \(favoriteArticle)")
+            if favoriteArticle != nil{
+                try! realm.write {
+                    realm.delete(favoriteArticle!)
+                }
+                alertByCancelFavorited()
+            } else {
+                print("This article is not contained in favorite list.")
             }
-            alertByCancelFavorited()
         } else {
             imageNum = 0
             clickedButtonAnimation()

@@ -160,6 +160,18 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let realm = try? Realm() else {
+            return
+        }
+        let tempResult = realm.objects(SearchWord.self).sorted(byKeyPath: "id", ascending: false)[indexPath.row]
+        print("tempResult: \(tempResult)")
+        let searchWord = tempResult.word
+        SearchedArticles = realm.objects(FavoriteArticle.self)
+        SearchedArticles = SearchedArticles?.filter("title CONTAINS[c] %@", searchWord)
+        performSegue(withIdentifier: "toSearchedResult", sender: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
