@@ -15,6 +15,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     @IBOutlet weak var pastSearchedTableView: UITableView!
     
     var searchWords = [String]()
+    var currentSearchWord = SearchWord()
     var pastSearchedWords: Results<SearchWord>?
     
     var SearchedArticles:Results<FavoriteArticle>?
@@ -42,6 +43,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         let navItem = UINavigationItem()
         navItem.leftBarButtonItem = backBarButtonItem
         navBar.setItems([navItem], animated: false)
+        
+        loadSearchHistory()
     }
     
     func loadSearchHistory(){
@@ -59,7 +62,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         guard let realm = try? Realm(configuration: config) else{
             return
         }
-        pastSearchedWords = realm.objects(SearchWord.self).sorted(byKeyPath: "date", ascending: false)
+        pastSearchedWords = realm.objects(SearchWord.self).sorted(byKeyPath: "id", ascending: false)
         
     }
     
@@ -76,7 +79,31 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text != nil{
+            guard let realm = try? Realm() else{
+                print("fail to get realm instance")
+                return
+            }
+            
+            // idを生成
+            let object = realm.objects(SearchWord.self).sorted(byKeyPath: "id").last
+            if object == nil{
+                currentSearchWord.id = 1
+            } else {
+                currentSearchWord.id = (object?.id)! + 1
+            }
+            // 検索日時を取得
+            let now = Date()
+            currentSearchWord.date = now
+            // 検索ワードを取得
             searchWords = (searchBar.text?.components(separatedBy: CharacterSet.whitespaces))!
+            for searchWord in searchWords{
+                currentSearchWord.word = searchWord
+            }
+            
+            try! realm.write {
+                realm.add(currentSearchWord)
+            }
+            
         } else{
             print("fail to get search text")
         }
