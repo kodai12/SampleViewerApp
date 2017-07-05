@@ -12,6 +12,7 @@ import RealmSwift
 class FavoriteViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var favoriteListTableView: UITableView!
+    
     var favoriteArticles:Results<FavoriteArticle>?
     var selectedTitle = String()
     var selectedURLString = String()
@@ -30,6 +31,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         refreshControl.attributedTitle = NSAttributedString(string: "refresh timeline")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         favoriteListTableView.addSubview(refreshControl)
+
     }
     
     func refresh(){
@@ -64,6 +66,15 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: FavoriteTableViewCell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell") as! FavoriteTableViewCell
         cell.favoriteArticleCell = favoriteArticles?[indexPath.row]
+        
+        // スクロール時にnavigationBarを隠す
+        if indexPath.row == 0{
+            self.navigationController?.hidesBarsOnSwipe = false
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        } else {
+            self.navigationController?.hidesBarsOnSwipe = true
+        }
+        
         return cell
     }
     

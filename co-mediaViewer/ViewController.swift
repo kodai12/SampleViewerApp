@@ -11,7 +11,7 @@ import RealmSwift
 import Social
 import Spring
 
-class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate {
+class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var mainWebView: UIWebView!
     let baseURL = URL(string: "http://www.co-media.jp/")
@@ -35,6 +35,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         super.viewDidLoad()
         
         mainWebView.delegate = self
+        mainWebView.scrollView.delegate = self
         let urlRequest = URLRequest(url: baseURL!)
         mainWebView.loadRequest(urlRequest)
         self.view.addSubview(mainWebView)
@@ -219,6 +220,24 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
             self.mainWebView.goForward()
         } else {
             print("fail to go foward")
+        }
+    }
+    
+    // スクロールでnvigationBarを隠す
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let beginingPoint = CGPoint(x: 0, y: 0)
+        let currentPoint = scrollView.contentOffset
+        let contentSize = scrollView.contentSize
+        let frameSize = scrollView.frame
+        let maxOffSet = contentSize.height - frameSize.height
+        
+        if currentPoint.y >= maxOffSet {
+            self.navigationController?.hidesBarsOnSwipe = true
+        } else if beginingPoint.y < currentPoint.y {
+            self.navigationController?.hidesBarsOnSwipe = true
+        } else {
+            self.navigationController?.isNavigationBarHidden = false
+            self.navigationController?.hidesBarsOnSwipe = false
         }
     }
     

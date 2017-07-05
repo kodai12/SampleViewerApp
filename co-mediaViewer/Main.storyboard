@@ -312,11 +312,11 @@
             </objects>
             <point key="canvasLocation" x="-532" y="172"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Articles-->
         <scene sceneID="9zg-1e-dRC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Gv-ZN-Pec" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="search" id="Kfm-dt-TfY"/>
+                    <tabBarItem key="tabBarItem" title="Articles" id="Kfm-dt-TfY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xAb-ZJ-sX8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
