@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--co-media-->
         <scene sceneID="CLQ-lQ-lUU">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="tSb-K7-uac" customClass="ViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,7 +31,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3m6-O4-a2m">
+                    <navigationItem key="navigationItem" title="co-media" id="3m6-O4-a2m">
                         <leftBarButtonItems>
                             <barButtonItem style="plain" id="AKn-vr-LlH">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="igc-93-nDW">
@@ -268,7 +268,7 @@
         <!--Favorite Detail View Controller-->
         <scene sceneID="0Cm-uu-2xY">
             <objects>
-                <viewController storyboardIdentifier="favoriteDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MVG-lS-L8X" customClass="FavoriteDetailViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favoriteDetailVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MVG-lS-L8X" customClass="FavoriteDetailViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mNO-V9-m1N"/>
                         <viewControllerLayoutGuide type="bottom" id="vMj-pi-Ryx"/>

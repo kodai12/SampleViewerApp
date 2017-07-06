@@ -11,7 +11,7 @@ import RealmSwift
 import Social
 import Spring
 
-class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
+class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var mainWebView: UIWebView!
     let baseURL = URL(string: "http://www.co-media.jp/")
@@ -30,8 +30,6 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
     let emptyHeartImage = UIImage(named:"empty_heart.png")!
     let coloredHeartImage = UIImage(named:"colored_heart.png")!
     var imageNum = 0
-    
-    var beginingPoint: CGPoint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +72,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         }
         
     }
+
     
     @IBAction func clickAddFavoriteList(_ sender: Any) {
         guard let realm = try? Realm() else{
@@ -221,28 +220,6 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
             self.mainWebView.goForward()
         } else {
             print("fail to go foward")
-        }
-    }
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        beginingPoint = scrollView.contentOffset
-    }
-    
-    // スクロールでnavigationBarを隠す
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        beginingPoint = CGPoint(x: 0, y: 0)
-        let currentPoint = scrollView.contentOffset
-        let contentSize = scrollView.contentSize
-        let frameSize = scrollView.frame
-        let maxOffSet = contentSize.height - frameSize.height
-        
-        if currentPoint.y >= maxOffSet {
-            self.navigationController?.hidesBarsOnSwipe = true
-        } else if beginingPoint.y < currentPoint.y {
-            self.navigationController?.hidesBarsOnSwipe = true
-        } else {
-            self.navigationController?.hidesBarsOnSwipe = false
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
     }
     
