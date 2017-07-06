@@ -53,14 +53,21 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         config.schemaVersion = 4
         Realm.Configuration.defaultConfiguration = config
         // データのロード
-        let realm = try! Realm(configuration: config)
+        guard let realm = try? Realm(configuration: config) else{
+            print("fail to get realm instance")
+            return
+        }
         // お気に入り追加日順でソートし、データを取り込む
         favoriteArticles = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "addedAt",ascending: true)
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favoriteArticles!.count
+        if favoriteArticles != nil {
+            return favoriteArticles!.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,8 +105,12 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let realm = RealmModel.realm.realmTry
-            try! realm.write {
-                realm.delete(RealmModel.realm.usersSet[indexPath.row])
+            do {
+                try realm.write {
+                    realm.delete(RealmModel.realm.usersSet[indexPath.row])
+                }
+            } catch {
+                print("catch the error on realm.write")
             }
             favoriteListTableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -109,8 +120,12 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "delete") { (action, index) -> Void in
             let realm = RealmModel.realm.realmTry
-            try! realm.write {
-                realm.delete(RealmModel.realm.usersSet[indexPath.row])
+            do {
+                try realm.write {
+                    realm.delete(RealmModel.realm.usersSet[indexPath.row])
+                }
+            } catch {
+                print("catch the error on realm.write")
             }
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

@@ -89,9 +89,13 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
             let favoriteArticle = favoriteArticles?.filter("url == %@", currentURLString)
             print("favoriteArticle: \(favoriteArticle)")
             if favoriteArticle != nil{
-                try! realm.write {
-                    realm.delete(favoriteArticle!)
-                }
+                do {
+                    try realm.write {
+                        realm.delete(favoriteArticle!)
+                    }
+                } catch {
+                    print("catch the error on realm.write")
+                    }
                 alertByCancelFavorited()
             } else {
                 print("This article is not contained in favorite list.")
@@ -115,8 +119,12 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
             currentArticle.title = currentTitle
             currentArticle.url = currentURLString
             currentArticle.imageString = currentImageURLString
-            try! realm.write {
-                realm.add(currentArticle)
+                do {
+                    try realm.write {
+                        realm.add(currentArticle)
+                    }
+            } catch {
+                print("catch the error on realm.write")
             }
         }
     }

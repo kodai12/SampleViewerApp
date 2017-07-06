@@ -100,8 +100,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
                 currentSearchWord.word = searchWord
             }
             
-            try! realm.write {
-                realm.add(currentSearchWord)
+            do {
+                try realm.write {
+                    realm.add(currentSearchWord)
+                }
+            } catch {
+                print("catch the error on realm.write")
             }
             
         } else{

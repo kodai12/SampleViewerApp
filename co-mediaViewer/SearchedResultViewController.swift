@@ -127,8 +127,12 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let realm = RealmModel.realm.realmTry
-            try! realm.write {
-                realm.delete(RealmModel.realm.usersSet[indexPath.row])
+            do {
+                try realm.write {
+                    realm.delete(RealmModel.realm.usersSet[indexPath.row])
+                }
+            } catch {
+                print("catch the error on realm.write")
             }
             searchedResultTableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -138,8 +142,12 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         
         let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "delete") { (action, index) -> Void in
             let realm = RealmModel.realm.realmTry
-            try! realm.write {
-                realm.delete(RealmModel.realm.usersSet[indexPath.row])
+            do {
+                try realm.write {
+                    realm.delete(RealmModel.realm.usersSet[indexPath.row])
+                }
+            } catch {
+                print("catch the error on realm.write")
             }
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

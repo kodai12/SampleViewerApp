@@ -16,6 +16,7 @@ class firstSettingTabBarController: UITabBarController, UITabBarControllerDelega
         self.delegate = self
     }
 
+    // タブをタップ時にtableViewのトップまでスクロール
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         guard let navVC = viewController as? UINavigationController else{
             print("fail to get navVC")
