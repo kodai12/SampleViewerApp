@@ -30,12 +30,13 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
     let emptyHeartImage = UIImage(named:"empty_heart.png")!
     let coloredHeartImage = UIImage(named:"colored_heart.png")!
     var imageNum = 0
+    
+    var beginingPoint: CGPoint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mainWebView.delegate = self
-        mainWebView.scrollView.delegate = self
         let urlRequest = URLRequest(url: baseURL!)
         mainWebView.loadRequest(urlRequest)
         self.view.addSubview(mainWebView)
@@ -223,9 +224,13 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         }
     }
     
-    // スクロールでnvigationBarを隠す
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        beginingPoint = scrollView.contentOffset
+    }
+    
+    // スクロールでnavigationBarを隠す
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let beginingPoint = CGPoint(x: 0, y: 0)
+        beginingPoint = CGPoint(x: 0, y: 0)
         let currentPoint = scrollView.contentOffset
         let contentSize = scrollView.contentSize
         let frameSize = scrollView.frame
@@ -236,8 +241,8 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         } else if beginingPoint.y < currentPoint.y {
             self.navigationController?.hidesBarsOnSwipe = true
         } else {
-            self.navigationController?.isNavigationBarHidden = false
             self.navigationController?.hidesBarsOnSwipe = false
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
     }
     

@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="CLQ-lQ-lUU">
             <objects>
-                <viewController id="tSb-K7-uac" customClass="ViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="tSb-K7-uac" customClass="ViewController" customModule="co_mediaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YFb-1X-ZRK"/>
                         <viewControllerLayoutGuide type="bottom" id="qve-F3-CeL"/>
@@ -323,6 +323,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="BHR-Ow-cwM">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="tSb-K7-uac" kind="relationship" relationship="rootViewController" id="7E6-i9-fDd"/>
                     </connections>
