@@ -26,10 +26,29 @@ class SearchedResultTableViewCell: UITableViewCell {
             searchedURL.text = unwrappedURL
         }
         if let unwrappedImageURLString = searchedResult?.imageString{
-            let imageURL = NSURL(string: unwrappedImageURLString)
-            let backImageData = NSData(contentsOf: imageURL! as URL)
-            searchedImageView.image = UIImage(data: backImageData! as Data)
+            loadImage(imageString: unwrappedImageURLString)
         }
+    }
+    
+    let CACHE_SEC: TimeInterval = 3 * 60 // 3分キャッシュ
+    func loadImage(imageString: String){
+        let req = URLRequest(url: URL(string: imageString)!,
+                             cachePolicy: .returnCacheDataElseLoad,
+                             timeoutInterval: CACHE_SEC)
+        let conf = URLSessionConfiguration.default
+        let session = URLSession(configuration: conf,
+                                 delegate: nil,
+                                 delegateQueue: OperationQueue.main)
+        
+        let task = session.dataTask(with: req, completionHandler: {(data, response, error) in
+            if error == nil {
+                let image = UIImage(data: data!)
+                self.searchedImageView.image = image
+            } else {
+                print("AsyncImageView Error: \(error?.localizedDescription)")
+            }
+        })
+        task.resume()
     }
     
     override func awakeFromNib() {
