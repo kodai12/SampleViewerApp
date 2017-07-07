@@ -32,6 +32,7 @@ class SearchedResultTableViewCell: UITableViewCell {
     
     let CACHE_SEC: TimeInterval = 3 * 60 // 3分キャッシュ
     func loadImage(imageString: String){
+        showIndicator()
         let req = URLRequest(url: URL(string: imageString)!,
                              cachePolicy: .returnCacheDataElseLoad,
                              timeoutInterval: CACHE_SEC)
@@ -42,6 +43,7 @@ class SearchedResultTableViewCell: UITableViewCell {
         
         let task = session.dataTask(with: req, completionHandler: {(data, response, error) in
             if error == nil {
+                self.stopIndicator()
                 let image = UIImage(data: data!)
                 self.searchedImageView.image = image
             } else {
@@ -49,6 +51,21 @@ class SearchedResultTableViewCell: UITableViewCell {
             }
         })
         task.resume()
+    }
+    
+    var activityIndicator: UIActivityIndicatorView!
+    func showIndicator(){
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.backgroundColor = UIColor.white
+        activityIndicator.center = CGPoint(x: searchedImageView.frame.size.width/2, y: searchedImageView.frame.size.height/2)
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        
+        activityIndicator.startAnimating()
+        searchedImageView.addSubview(activityIndicator)
+    }
+    
+    func stopIndicator(){
+        activityIndicator.stopAnimating()
     }
     
     override func awakeFromNib() {
