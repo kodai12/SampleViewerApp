@@ -44,6 +44,11 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
             hidingNavBarManager?.manageBottomBar(tabBar)
         }
         hidingNavBarManager?.viewWillAppear(animated)
+        favoriteListTableView.layer.frame = CGRect(x: 0,
+                                                   y: (navigationController?.navigationBar.frame.maxY)!,
+                                                   width: view.frame.size.width,
+                                                   height: view.frame.size.height - (navigationController?.navigationBar.frame.height)!)
+        favoriteListTableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,7 +58,11 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
             hidingNavBarManager?.manageBottomBar(tabBar)
         }
         hidingNavBarManager?.viewWillDisappear(animated)
-
+        favoriteListTableView.layer.frame = CGRect(x: 0,
+                                                   y: 0,
+                                                   width: view.frame.size.width,
+                                                   height: view.frame.size.height)
+        favoriteListTableView.reloadData()
     }
     
     func refresh(){

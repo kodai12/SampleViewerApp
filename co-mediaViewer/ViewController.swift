@@ -25,7 +25,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
     var favoriteArticlesURLString = [String]()
 
     var myComposeView:SLComposeViewController?
-
+    
     @IBOutlet weak var favoriteButton: DesignableButton!
     let emptyHeartImage = UIImage(named:"empty_heart.png")!
     let coloredHeartImage = UIImage(named:"colored_heart.png")!
@@ -42,7 +42,6 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         showIndicator()
-        
     }
     
     func webViewDidStartLoad(_ webView: UIWebView) {
@@ -93,7 +92,6 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
     func stopIndicator(){
         activityIndicator.stopAnimating()
     }
-
     
     @IBAction func clickAddFavoriteList(_ sender: Any) {
         // クリックに応じてボタンの色を変更させる
@@ -281,4 +279,3 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
 
 
 }
-

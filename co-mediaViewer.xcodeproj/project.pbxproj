@@ -27,6 +27,7 @@
 		2B97814D1F0245CC001D5A3B /* firstSettingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97814C1F0245CC001D5A3B /* firstSettingTabBarController.swift */; };
 		2B97814F1F02528B001D5A3B /* FavoriteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97814E1F02528B001D5A3B /* FavoriteDetailViewController.swift */; };
 		2B9781511F025FC2001D5A3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9781501F025FC2001D5A3B /* Main.storyboard */; };
+		2BC237521F10E5150042403B /* スクリーンショット 2017-07-08 19.01.39.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC237511F10E5150042403B /* スクリーンショット 2017-07-08 19.01.39.png */; };
 		2BFAD4721F0669A4004E7548 /* empty_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAD4711F0669A4004E7548 /* empty_heart.png */; };
 		2BFAD4741F0669AD004E7548 /* colored_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFAD4731F0669AD004E7548 /* colored_heart.png */; };
 		DE713C52DE3156636197E5D6 /* Pods_co_mediaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCF2322189BEB79E706A8C8 /* Pods_co_mediaViewer.framework */; };
@@ -57,6 +58,7 @@
 		2B97814C1F0245CC001D5A3B /* firstSettingTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = firstSettingTabBarController.swift; sourceTree = "<group>"; };
 		2B97814E1F02528B001D5A3B /* FavoriteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteDetailViewController.swift; sourceTree = "<group>"; };
 		2B9781501F025FC2001D5A3B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		2BC237511F10E5150042403B /* スクリーンショット 2017-07-08 19.01.39.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "スクリーンショット 2017-07-08 19.01.39.png"; sourceTree = "<group>"; };
 		2BFAD4711F0669A4004E7548 /* empty_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty_heart.png; sourceTree = "<group>"; };
 		2BFAD4731F0669AD004E7548 /* colored_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colored_heart.png; sourceTree = "<group>"; };
 		4FD247664C9421A51AD05C8D /* Pods-co-mediaViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-co-mediaViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-co-mediaViewer/Pods-co-mediaViewer.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				2B337EA11EFBD2F90071D202 /* LaunchScreen.storyboard */,
 				2BFAD4711F0669A4004E7548 /* empty_heart.png */,
 				2BFAD4731F0669AD004E7548 /* colored_heart.png */,
+				2BC237511F10E5150042403B /* スクリーンショット 2017-07-08 19.01.39.png */,
 				2B614E701F0A27A1007060D8 /* スクリーンショット 2017-07-03 16.19.32.png */,
 				2B337EA41EFBD2F90071D202 /* Info.plist */,
 			);
@@ -226,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BFAD4721F0669A4004E7548 /* empty_heart.png in Resources */,
+				2BC237521F10E5150042403B /* スクリーンショット 2017-07-08 19.01.39.png in Resources */,
 				2B9781511F025FC2001D5A3B /* Main.storyboard in Resources */,
 				2B614E711F0A27A2007060D8 /* スクリーンショット 2017-07-03 16.19.32.png in Resources */,
 				2BFAD4741F0669AD004E7548 /* colored_heart.png in Resources */,
