@@ -41,6 +41,8 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         setupSwipeGestures()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
+        showIndicator()
+        
     }
     
     func webViewDidStartLoad(_ webView: UIWebView) {
@@ -72,62 +74,103 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
         }
         
     }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        stopIndicator()
+    }
+    
+    var activityIndicator: UIActivityIndicatorView!
+    func showIndicator(){
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.backgroundColor = UIColor.white
+        activityIndicator.center = mainWebView.center
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        
+        activityIndicator.startAnimating()
+        mainWebView.addSubview(activityIndicator)
+    }
+    
+    func stopIndicator(){
+        activityIndicator.stopAnimating()
+    }
 
     
     @IBAction func clickAddFavoriteList(_ sender: Any) {
-        guard let realm = try? Realm() else{
-            print("can't complete realm setting.")
-            return
-        }
         // クリックに応じてボタンの色を変更させる
         // 保存済みの記事の場合はRealmDBから記事を削除、未保存の記事の場合はRealmDBに保存
         if favoriteArticlesURLString.contains(currentURLString){
             imageNum = 1
             clickedButtonAnimation()
             displayImage()
-            let favoriteArticles:Results<FavoriteArticle>? = realm.objects(FavoriteArticle.self)
-            let favoriteArticle = favoriteArticles?.filter("url == %@", currentURLString)
-            print("favoriteArticle: \(favoriteArticle)")
-            if favoriteArticle != nil{
-                do {
-                    try realm.write {
-                        realm.delete(favoriteArticle!)
-                    }
-                } catch {
-                    print("catch the error on realm.write")
-                    }
-                alertByCancelFavorited()
-            } else {
-                print("This article is not contained in favorite list.")
-            }
+            
+            // 保存済み記事をRealmDBから削除
+            deleteFavoriteArticleInRealm()
         } else {
             imageNum = 0
             clickedButtonAnimation()
             displayImage()
-            // 記事のidを生成
-            let object = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "id").last
-            if object == nil{
-                currentArticle.id = 1
-            } else {
-                currentArticle.id = (object?.id)! + 1
-            }
-            // 現在時刻の取得
-            let now = Date()
-            currentArticle.addedAt = now
             
             // 取得した各値をまとめてRealmDBに保存
             currentArticle.title = currentTitle
             currentArticle.url = currentURLString
             currentArticle.imageString = currentImageURLString
-                do {
-                    try realm.write {
-                        realm.add(currentArticle)
-                    }
+            
+            // 記事をRealmDBに保存
+            updateFavoriteArticleInRealm(article: currentArticle)
+        }
+    }
+    
+    func updateFavoriteArticleInRealm(article: FavoriteArticle){
+        let updateFavoriteArticle = FavoriteArticle()
+        updateFavoriteArticle.title = article.title
+        updateFavoriteArticle.url = article.url
+        updateFavoriteArticle.imageString = article.imageString
+        
+        guard let realm = try? Realm() else{
+            print("can't complete realm setting.")
+            return
+        }
+        // 記事のidを生成
+        let object = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "id").last
+        if object == nil{
+            updateFavoriteArticle.id = 1
+        } else {
+            updateFavoriteArticle.id = (object?.id)! + 1
+        }
+        // 現在時刻の取得
+        let now = Date()
+        updateFavoriteArticle.addedAt = now
+    
+        do {
+            try realm.write {
+                realm.add(updateFavoriteArticle, update: true)
+            }
+        } catch {
+            print("catch the error on realm.write")
+        }
+    }
+    
+    func deleteFavoriteArticleInRealm(){
+        guard let realm = try? Realm() else{
+            print("can't complete realm setting.")
+            return
+        }
+        let favoriteArticles:Results<FavoriteArticle>? = realm.objects(FavoriteArticle.self)
+        let favoriteArticle = favoriteArticles?.filter("url == %@", currentURLString)
+        if favoriteArticle != nil{
+            do {
+                try realm.write {
+                    realm.delete(favoriteArticle!)
+                }
             } catch {
                 print("catch the error on realm.write")
             }
+            alertByCancelFavorited()
+        } else {
+            print("This article is not contained in favorite list.")
         }
     }
+
 
     func displayImage(){
         let imageArray = [coloredHeartImage,emptyHeartImage]

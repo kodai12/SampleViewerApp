@@ -143,7 +143,7 @@
                         <outlet property="pastSearchedTableView" destination="7j6-N3-ojh" id="2GS-Mo-mGN"/>
                         <outlet property="searchBar" destination="ivf-tR-Vgx" id="PWf-QG-hzC"/>
                         <outlet property="searchDisplayController" destination="WLy-Gp-QOW" id="GST-KS-Lhk"/>
-                        <segue destination="3wb-ig-dZH" kind="presentation" identifier="toSearchedResult" id="0Pg-Vm-e5i"/>
+                        <segue destination="3wb-ig-dZH" kind="modal" identifier="toSearchedResult" id="0Pg-Vm-e5i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdk-Ms-KEI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -251,7 +251,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="clickSearchButton:" destination="3py-1p-TtA" eventType="touchUpInside" id="RAV-MM-GNy"/>
-                                    <segue destination="7Gh-Ey-CVh" kind="presentation" identifier="toSearchVC" id="3TA-Gg-KB6"/>
+                                    <segue destination="7Gh-Ey-CVh" kind="modal" identifier="toSearchVC" id="3TA-Gg-KB6"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -286,6 +286,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="7kb-a2-Qgy"/>
                     <connections>
                         <outlet property="detailWebView" destination="kay-cm-9cj" id="VCT-uZ-4tg"/>
                     </connections>

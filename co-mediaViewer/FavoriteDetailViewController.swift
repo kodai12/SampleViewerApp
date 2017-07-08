@@ -9,7 +9,7 @@
 import UIKit
 import Social
 
-class FavoriteDetailViewController: UIViewController, UIGestureRecognizerDelegate {
+class FavoriteDetailViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var detailWebView: UIWebView!
     var detailTitle = String()
@@ -21,6 +21,8 @@ class FavoriteDetailViewController: UIViewController, UIGestureRecognizerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        detailWebView.delegate = self
+        
         let url = NSURL(string: detailArticleURLString)
         let urlRequest = URLRequest(url: url! as URL)
         detailWebView.loadRequest(urlRequest)
@@ -28,9 +30,11 @@ class FavoriteDetailViewController: UIViewController, UIGestureRecognizerDelegat
         setupSwipeGestures()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
+        showIndicator()
+        
         // navigationBarの生成
         let navBar = UINavigationBar(frame: CGRect(x: UIScreen.main.bounds.minX, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
-        navBar.barTintColor = UIColor(red:0.05, green:0.50, blue:0.32, alpha:0.8)
+        navBar.barTintColor = UIColor.lightGray
         self.view.addSubview(navBar)
         // barButtonItemの生成
         let shareButton = UIButton(frame: CGRect(x:0,y:0,width:100,height:50))
@@ -49,6 +53,25 @@ class FavoriteDetailViewController: UIViewController, UIGestureRecognizerDelegat
         navItem.rightBarButtonItem = shareBarButtonItem
         navItem.leftBarButtonItem = backBarButtonItem
         navBar.setItems([navItem], animated: false)
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        stopIndicator()
+    }
+    
+    var activityIndicator: UIActivityIndicatorView!
+    func showIndicator(){
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.backgroundColor = UIColor.white
+        activityIndicator.center = detailWebView.center
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        
+        activityIndicator.startAnimating()
+        detailWebView.addSubview(activityIndicator)
+    }
+    
+    func stopIndicator(){
+        activityIndicator.stopAnimating()
     }
     
     func setupSwipeGestures(){

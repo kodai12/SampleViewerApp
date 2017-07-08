@@ -20,6 +20,10 @@ class FavoriteArticle: Object {
     override static func indexedProperties() -> [String]{
         return ["title"]
     }
+    
+    override static func primaryKey() -> String?{
+        return "id"
+    }
 }
 
 class SearchWord: Object {
@@ -30,6 +34,10 @@ class SearchWord: Object {
     
     override static func indexedProperties() -> [String]{
         return ["word"]
+    }
+    
+    override static func primaryKey() -> String?{
+        return "id"
     }
     
 }

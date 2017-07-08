@@ -31,7 +31,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         
         // navigationBarの生成
         let navBar = UINavigationBar(frame: CGRect(x: UIScreen.main.bounds.minX, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
-        navBar.barTintColor = UIColor(red:0.05, green:0.50, blue:0.32, alpha:0.8)
+        navBar.barTintColor = UIColor.lightGray
         self.view.addSubview(navBar)
         // barButtonItemの生成
         let backButton = UIButton(frame: CGRect(x:0,y:0,width:100,height:50))
@@ -55,8 +55,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
                 if(oldSchemaVersion < 2){}
                 if(oldSchemaVersion < 3){}
                 if(oldSchemaVersion < 4){}
+                if(oldSchemaVersion < 5){}
         })
-        config.schemaVersion = 4
+        config.schemaVersion = 5
         Realm.Configuration.defaultConfiguration = config
         
         guard let realm = try? Realm(configuration: config) else{
@@ -68,7 +69,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     
     func clickBackButton(){
         let firstSettingTBC: firstSettingTabBarController = storyboard?.instantiateViewController(withIdentifier: "firstSettingTBC") as! firstSettingTabBarController
-        present(firstSettingTBC, animated: true, completion: nil)
+        present(firstSettingTBC, animated: false, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

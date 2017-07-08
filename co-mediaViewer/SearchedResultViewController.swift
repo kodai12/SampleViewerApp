@@ -31,7 +31,7 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         
         // navigationBarの生成
         let navBar = UINavigationBar(frame: CGRect(x: UIScreen.main.bounds.minX, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
-        navBar.barTintColor = UIColor(red:0.05, green:0.50, blue:0.32, alpha:0.8)
+        navBar.barTintColor = UIColor.lightGray
         self.view.addSubview(navBar)
         // barButtonItemの生成
         let backButton = UIButton(frame: CGRect(x:0,y:0,width:100,height:50))

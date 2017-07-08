@@ -49,8 +49,9 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
                 if(oldSchemaVersion < 2){}
                 if(oldSchemaVersion < 3){}
                 if(oldSchemaVersion < 4){}
+                if(oldSchemaVersion < 5){}
         })
-        config.schemaVersion = 4
+        config.schemaVersion = 5
         Realm.Configuration.defaultConfiguration = config
         // データのロード
         guard let realm = try? Realm(configuration: config) else{
@@ -58,7 +59,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
             return
         }
         // お気に入り追加日順でソートし、データを取り込む
-        favoriteArticles = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "addedAt",ascending: true)
+        favoriteArticles = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "addedAt",ascending: false)
         
     }
     
