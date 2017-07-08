@@ -1,14 +1,18 @@
 PODS:
+  - HidingNavigationBar (1.0.0)
   - Realm (2.8.3):
     - Realm/Headers (= 2.8.3)
   - Realm/Headers (2.8.3)
   - RealmSwift (2.8.3):
     - Realm (= 2.8.3)
   - Spring (1.0.3)
+  - TKKeyboardControl (1.0.8)
 
 DEPENDENCIES:
+  - HidingNavigationBar (~> 1.0)
   - RealmSwift
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
+  - TKKeyboardControl
 
 EXTERNAL SOURCES:
   Spring:
@@ -21,10 +25,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
+  HidingNavigationBar: 170dd21df8e89c465c01f047d4306778d1ce304c
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
+  TKKeyboardControl: 32a07ab35fa0540062b22e323776d7fb0a8fb48a
 
-PODFILE CHECKSUM: e4e017ae16e9a8590ac78f71f659627ea052c0a6
+PODFILE CHECKSUM: ee496bc9139b6ac5933055c28069e014e240e9b8
 
 COCOAPODS: 1.2.1

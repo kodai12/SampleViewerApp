@@ -15,6 +15,8 @@
 		2B337EAD1EFD01DE0071D202 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B337EAC1EFD01DE0071D202 /* FavoriteTableViewCell.swift */; };
 		2B337EB31EFD0D9B0071D202 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B337EB11EFD0D9B0071D202 /* Realm.framework */; };
 		2B337EB41EFD0D9B0071D202 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B337EB21EFD0D9B0071D202 /* RealmSwift.framework */; };
+		2B3C4E691F10C4D50006E5D0 /* HidingNavigationBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3C4E671F10C4D50006E5D0 /* HidingNavigationBar.framework */; };
+		2B3C4E6A1F10C4D50006E5D0 /* TKKeyboardControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3C4E681F10C4D50006E5D0 /* TKKeyboardControl.framework */; };
 		2B4A1BF41F0668190014497D /* Spring.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4A1BF31F0668190014497D /* Spring.framework */; };
 		2B4E768C1F07A31C00344D8F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E768B1F07A31C00344D8F /* SearchViewController.swift */; };
 		2B4E768E1F07A32A00344D8F /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E768D1F07A32A00344D8F /* SearchTableViewCell.swift */; };
@@ -43,6 +45,8 @@
 		2B337EB11EFD0D9B0071D202 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Library/Developer/Xcode/DerivedData/co-mediaViewer-aiefnvbyrzfkxwfisjgkklivnqqs/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
 		2B337EB21EFD0D9B0071D202 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/co-mediaViewer-aiefnvbyrzfkxwfisjgkklivnqqs/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		2B337EB51EFD0DA10071D202 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		2B3C4E671F10C4D50006E5D0 /* HidingNavigationBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HidingNavigationBar.framework; path = "../../Library/Developer/Xcode/DerivedData/co-mediaViewer-aiefnvbyrzfkxwfisjgkklivnqqs/Build/Products/Debug-iphoneos/HidingNavigationBar/HidingNavigationBar.framework"; sourceTree = "<group>"; };
+		2B3C4E681F10C4D50006E5D0 /* TKKeyboardControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TKKeyboardControl.framework; path = "../../Library/Developer/Xcode/DerivedData/co-mediaViewer-aiefnvbyrzfkxwfisjgkklivnqqs/Build/Products/Debug-iphoneos/TKKeyboardControl/TKKeyboardControl.framework"; sourceTree = "<group>"; };
 		2B4A1BF31F0668190014497D /* Spring.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spring.framework; path = "../../Library/Developer/Xcode/DerivedData/co-mediaViewer-aiefnvbyrzfkxwfisjgkklivnqqs/Build/Products/Debug-iphoneos/Spring/Spring.framework"; sourceTree = "<group>"; };
 		2B4E768B1F07A31C00344D8F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		2B4E768D1F07A32A00344D8F /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B3C4E691F10C4D50006E5D0 /* HidingNavigationBar.framework in Frameworks */,
+				2B3C4E6A1F10C4D50006E5D0 /* TKKeyboardControl.framework in Frameworks */,
 				2B4A1BF41F0668190014497D /* Spring.framework in Frameworks */,
 				2B337EB31EFD0D9B0071D202 /* Realm.framework in Frameworks */,
 				2B337EB41EFD0D9B0071D202 /* RealmSwift.framework in Frameworks */,
@@ -145,6 +151,8 @@
 		9887787A091113C6422B5CBE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B3C4E671F10C4D50006E5D0 /* HidingNavigationBar.framework */,
+				2B3C4E681F10C4D50006E5D0 /* TKKeyboardControl.framework */,
 				2B4A1BF31F0668190014497D /* Spring.framework */,
 				2B337EB51EFD0DA10071D202 /* WebKit.framework */,
 				2B337EB11EFD0D9B0071D202 /* Realm.framework */,

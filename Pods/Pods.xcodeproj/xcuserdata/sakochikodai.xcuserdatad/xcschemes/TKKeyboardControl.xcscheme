@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '858892B23904E2138598BB1324D7F1E1'
-               BlueprintName = 'RealmSwift'
+               BlueprintIdentifier = '28600604692369CBA3B8FA5CFC0D0252'
+               BlueprintName = 'TKKeyboardControl'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'RealmSwift.framework'>
+               BuildableName = 'TKKeyboardControl.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -6,7 +6,9 @@ target 'co-mediaViewer' do
   use_frameworks!
   pod 'RealmSwift'
   pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
-  
+  pod 'HidingNavigationBar', '~> 1.0'
+  pod 'TKKeyboardControl'  
+
   # Pods for co-mediaViewer
 
 end

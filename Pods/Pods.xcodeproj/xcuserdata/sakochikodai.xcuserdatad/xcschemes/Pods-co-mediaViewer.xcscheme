@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4C9BFF607A8E2224CE6644ED2E8366F3"
+               BlueprintIdentifier = "AF96580E265A730D180F7344404D7989"
                BuildableName = "Pods_co_mediaViewer.framework"
                BlueprintName = "Pods-co-mediaViewer"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4C9BFF607A8E2224CE6644ED2E8366F3"
+            BlueprintIdentifier = "AF96580E265A730D180F7344404D7989"
             BuildableName = "Pods_co_mediaViewer.framework"
             BlueprintName = "Pods-co-mediaViewer"
             ReferencedContainer = "container:Pods.xcodeproj">

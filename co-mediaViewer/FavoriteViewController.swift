@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import HidingNavigationBar
 
 class FavoriteViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -18,7 +19,8 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     var selectedURLString = String()
     
     let refreshControl = UIRefreshControl()
-
+    var hidingNavBarManager: HidingNavigationBarManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +33,26 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         refreshControl.attributedTitle = NSAttributedString(string: "refresh timeline")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         favoriteListTableView.addSubview(refreshControl)
+        
+        hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: favoriteListTableView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let tabBar = navigationController?.tabBarController?.tabBar{
+            hidingNavBarManager?.manageBottomBar(tabBar)
+        }
+        hidingNavBarManager?.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let tabBar = navigationController?.tabBarController?.tabBar{
+            hidingNavBarManager?.manageBottomBar(tabBar)
+        }
+        hidingNavBarManager?.viewWillDisappear(animated)
 
     }
     
@@ -75,16 +97,9 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell: FavoriteTableViewCell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell") as! FavoriteTableViewCell
         cell.favoriteArticleCell = favoriteArticles?[indexPath.row]
         
-        // スクロール時にnavigationBarを隠す
-        if indexPath.row == 0{
-            self.navigationController?.hidesBarsOnSwipe = false
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-        } else {
-            self.navigationController?.hidesBarsOnSwipe = true
-        }
-        
         return cell
     }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let unwrappedURLString = favoriteArticles?[indexPath.row].url, let unwrappedTitle = favoriteArticles?[indexPath.row].title{
@@ -136,9 +151,9 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     @IBAction func clickSearchButton(_ sender: Any) {
-        performSegue(withIdentifier: "toSearchVC", sender: nil)
+        performSegue(withIdentifier: "toSearchVC", sender: nil)    
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

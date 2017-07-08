@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '858892B23904E2138598BB1324D7F1E1'
-               BlueprintName = 'RealmSwift'
+               BlueprintIdentifier = '52193E2D3B4FD58FDEAA19F11D4E0679'
+               BlueprintName = 'HidingNavigationBar'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'RealmSwift.framework'>
+               BuildableName = 'HidingNavigationBar.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
