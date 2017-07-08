@@ -108,13 +108,19 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             } catch {
                 print("catch the error on realm.write")
             }
-            
+            updateSearchedResult()
+            print("searchedArticle is : \(SearchedArticles)")
+            searchBar.resignFirstResponder()
+            if SearchedArticles?.count != 0 {
+                print("search result is not nil")
+                performSegue(withIdentifier: "toSearchedResult", sender: nil)
+            } else {
+                print("search result is nil")
+                alertBySearchedResultIsNil()
+            }
         } else{
             print("fail to get search text")
         }
-        updateSearchedResult()
-        searchBar.resignFirstResponder()
-        performSegue(withIdentifier: "toSearchedResult", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -150,6 +156,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         }
     }
     
+    func alertBySearchedResultIsNil(){
+        let alertController = UIAlertController(title: "検索結果は0件です", message: "別のキーワードで再度検索を行ってください", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(confirmAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if pastSearchedWords == nil{
             return 0
@@ -170,11 +183,19 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             return
         }
         let tempResult = realm.objects(SearchWord.self).sorted(byKeyPath: "id", ascending: false)[indexPath.row]
-        print("tempResult: \(tempResult)")
         let searchWord = tempResult.word
+        print("searchWord: \(searchWord)")
         SearchedArticles = realm.objects(FavoriteArticle.self)
         SearchedArticles = SearchedArticles?.filter("title CONTAINS[c] %@", searchWord)
-        performSegue(withIdentifier: "toSearchedResult", sender: nil)
+        if SearchedArticles?.count != 0 {
+            print("search result is not nil: \(SearchedArticles)")
+            performSegue(withIdentifier: "toSearchedResult", sender: nil)
+            pastSearchedTableView.deselectRow(at: indexPath, animated: true)
+        } else {
+            print("search result is nil")
+            alertBySearchedResultIsNil()
+            pastSearchedTableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     override func didReceiveMemoryWarning() {

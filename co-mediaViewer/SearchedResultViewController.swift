@@ -52,7 +52,7 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if searchBar.isFirstResponder{
-            searchBar.resignFirstResponder()
+            searchBar.endEditing(true)
         }
     }
     
