@@ -13,6 +13,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var pastSearchedTableView: UITableView!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var searchWords = [String]()
     var currentSearchWord = SearchWord()
@@ -26,8 +27,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         searchBar.delegate = self
         pastSearchedTableView.delegate = self
         pastSearchedTableView.dataSource = self
-        
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        // searchBarのUIsetting
+        searchBar.layer.borderWidth = 1
+        searchBar.layer.borderColor = UIColor.white.cgColor
+        searchBar.showsCancelButton = true
         
         loadSearchHistory()
     }
@@ -84,7 +89,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             
             do {
                 try realm.write {
-                    realm.add(currentSearchWord)
+                    realm.add(currentSearchWord, update: true)
                 }
             } catch {
                 print("catch the error on realm.write")
@@ -102,6 +107,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         } else{
             print("fail to get search text")
         }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -162,10 +171,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         }
     }
 
-    @IBAction func clickCancelButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

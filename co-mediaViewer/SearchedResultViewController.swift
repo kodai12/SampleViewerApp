@@ -13,6 +13,7 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
 
     @IBOutlet weak var searchedResultTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var selectedTitle = String()
     var selectedURLString = String()
@@ -26,9 +27,12 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.delegate = self
         searchedResultTableView.delegate = self
         searchedResultTableView.dataSource = self
-        
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
+        // searchBarのUIsetting
+        searchBar.layer.borderWidth = 1
+        searchBar.layer.borderColor = UIColor.white.cgColor
+        searchBar.showsCancelButton = true
     }
 
 
@@ -48,6 +52,10 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.resignFirstResponder()
         searchedResultTableView.reloadData()
         
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     
