@@ -29,26 +29,8 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
-        // navigationBarの生成
-        let navBar = UINavigationBar(frame: CGRect(x: UIScreen.main.bounds.minX, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
-        navBar.barTintColor = UIColor.lightGray
-        self.view.addSubview(navBar)
-        // barButtonItemの生成
-        let backButton = UIButton(frame: CGRect(x:0,y:0,width:100,height:50))
-        backButton.tintColor = UIColor(red:0.06, green:0.47, blue:0.12, alpha:1.0)
-        backButton.layer.masksToBounds = true
-        backButton.setTitle("＜ Back", for: .normal)
-        backButton.addTarget(self, action: #selector(SearchedResultViewController.clickBackButton), for: .touchUpInside)
-        let backBarButtonItem = UIBarButtonItem(customView: backButton)
-        let navItem = UINavigationItem()
-        navItem.leftBarButtonItem = backBarButtonItem
-        navBar.setItems([navItem], animated: false)
     }
-    
-    func clickBackButton(){
-        let searchVC: SearchViewController = storyboard?.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
-        present(searchVC, animated: false, completion: nil)
-    }
+
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if searchBar.isFirstResponder{
@@ -68,19 +50,6 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        clearSearchBar()
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchBar.setShowsCancelButton(searchText.characters.count > 0, animated: true)
-    }
-    
-    func clearSearchBar(){
-        searchBar.text = ""
-        self.searchBar(searchBar,textDidChange: "")
-    }
     
     func updateSearchedResult(){
         guard let realm = try? Realm() else {
@@ -103,6 +72,7 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         if let unwrappedResults = searchedResults{
             cell.searchedResult = unwrappedResults[indexPath.row]
         }
+        
         return cell
     }
     
@@ -156,6 +126,9 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         return [deleteButton]
     }
 
+    @IBAction func clickCancelButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

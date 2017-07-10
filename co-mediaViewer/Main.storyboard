@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ivf-tR-Vgx">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="290" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -135,6 +135,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woh-Hy-Nob">
+                                <rect key="frame" x="290" y="28" width="89" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="キャンセル"/>
+                                <connections>
+                                    <action selector="clickCancelButton:" destination="7Gh-Ey-CVh" eventType="touchUpInside" id="eq9-bp-cpG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -156,7 +164,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1357.5999999999999" y="-881.10944527736137"/>
+            <point key="canvasLocation" x="2296.8000000000002" y="-881.10944527736137"/>
         </scene>
         <!--favorite list-->
         <scene sceneID="6TU-IE-iIc">
@@ -178,7 +186,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="177"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mNv-fR-UBE" id="nZW-TZ-TNR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bIy-Qg-ouq">
@@ -260,9 +268,11 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="clickSearchButton:" destination="3py-1p-TtA" eventType="touchUpInside" id="DVl-jT-ToZ"/>
-                                    <segue destination="7Gh-Ey-CVh" kind="modal" identifier="toSearchVC" id="GBa-qX-N8k"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <segue destination="7Gh-Ey-CVh" kind="modal" identifier="toSearchVC" id="qph-5P-H1i"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -433,10 +443,18 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2d4-9S-Zjq">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="290" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mh9-Ja-2KC">
+                                <rect key="frame" x="290" y="28" width="85" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="キャンセル"/>
+                                <connections>
+                                    <action selector="clickCancelButton:" destination="3wb-ig-dZH" eventType="touchUpInside" id="wBR-ff-eYe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -460,7 +478,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0XE-zx-Qzn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2248.8000000000002" y="-881.10944527736137"/>
+            <point key="canvasLocation" x="3188" y="-881.10944527736137"/>
         </scene>
     </scenes>
     <resources>
@@ -468,6 +486,6 @@
         <image name="スクリーンショット 2017-07-03 16.19.32.png" width="58" height="49"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EfG-5h-dBd"/>
+        <segue reference="mII-H5-xtE"/>
     </inferredMetricsTieBreakers>
 </document>

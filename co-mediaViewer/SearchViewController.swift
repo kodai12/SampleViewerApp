@@ -29,21 +29,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
-        // navigationBarの生成
-        let navBar = UINavigationBar(frame: CGRect(x: UIScreen.main.bounds.minX, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
-        navBar.barTintColor = UIColor.lightGray
-        self.view.addSubview(navBar)
-        // barButtonItemの生成
-        let backButton = UIButton(frame: CGRect(x:0,y:0,width:100,height:50))
-        backButton.tintColor = UIColor(red:0.06, green:0.47, blue:0.12, alpha:1.0)
-        backButton.layer.masksToBounds = true
-        backButton.setTitle("＜ Back", for: .normal)
-        backButton.addTarget(self, action: #selector(SearchedResultViewController.clickBackButton), for: .touchUpInside)
-        let backBarButtonItem = UIBarButtonItem(customView: backButton)
-        let navItem = UINavigationItem()
-        navItem.leftBarButtonItem = backBarButtonItem
-        navBar.setItems([navItem], animated: false)
-        
         loadSearchHistory()
     }
     
@@ -67,10 +52,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         
     }
     
-    func clickBackButton(){
-        let firstSettingTBC: firstSettingTabBarController = storyboard?.instantiateViewController(withIdentifier: "firstSettingTBC") as! firstSettingTabBarController
-        present(firstSettingTBC, animated: false, completion: nil)
-    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if searchBar.isFirstResponder{
@@ -130,20 +111,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         }
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        clearSearchBar()
-        searchBar.resignFirstResponder()
-    }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchBar.setShowsCancelButton(searchText.characters.count > 0, animated: true)
-    }
-
-    func clearSearchBar(){
-        searchBar.text = ""
-        self.searchBar(searchBar,textDidChange: "")
-    }
-    
     func updateSearchedResult(){
         guard let realm = try? Realm() else {
             print("fail to get realm instance")
@@ -184,18 +151,19 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         }
         let tempResult = realm.objects(SearchWord.self).sorted(byKeyPath: "id", ascending: false)[indexPath.row]
         let searchWord = tempResult.word
-        print("searchWord: \(searchWord)")
         SearchedArticles = realm.objects(FavoriteArticle.self)
         SearchedArticles = SearchedArticles?.filter("title CONTAINS[c] %@", searchWord)
         if SearchedArticles?.count != 0 {
-            print("search result is not nil: \(SearchedArticles)")
             performSegue(withIdentifier: "toSearchedResult", sender: nil)
             pastSearchedTableView.deselectRow(at: indexPath, animated: true)
         } else {
-            print("search result is nil")
             alertBySearchedResultIsNil()
             pastSearchedTableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+
+    @IBAction func clickCancelButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
