@@ -29,6 +29,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         
         loadData()
         favoriteListTableView.reloadData()
+        
         // UIRefreshControlの設定
         refreshControl.attributedTitle = NSAttributedString(string: "refresh timeline")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -40,15 +41,17 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        // viewを表示後はnavigationBarのすぐ下にcellが揃うようなUIに設定
+        favoriteListTableView.contentInset = UIEdgeInsets(top: (navigationController?.navigationBar.frame.maxY)!, left: 0, bottom: 0, right: 0)
+        favoriteListTableView.contentSize = CGSize(width: view.frame.size.width, height: view.frame.size.height - (navigationController?.navigationBar.frame.maxY)!)
+        self.view.addSubview(favoriteListTableView)
+        
+        
         if let tabBar = navigationController?.tabBarController?.tabBar{
             hidingNavBarManager?.manageBottomBar(tabBar)
         }
         hidingNavBarManager?.viewWillAppear(animated)
-        favoriteListTableView.layer.frame = CGRect(x: 0,
-                                                   y: (navigationController?.navigationBar.frame.maxY)!,
-                                                   width: view.frame.size.width,
-                                                   height: view.frame.size.height - (navigationController?.navigationBar.frame.height)!)
-        favoriteListTableView.reloadData()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,11 +61,6 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
             hidingNavBarManager?.manageBottomBar(tabBar)
         }
         hidingNavBarManager?.viewWillDisappear(animated)
-        favoriteListTableView.layer.frame = CGRect(x: 0,
-                                                   y: 0,
-                                                   width: view.frame.size.width,
-                                                   height: view.frame.size.height)
-        favoriteListTableView.reloadData()
     }
     
     func refresh(){
@@ -105,6 +103,15 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: FavoriteTableViewCell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell") as! FavoriteTableViewCell
         cell.favoriteArticleCell = favoriteArticles?[indexPath.row]
+        
+        if indexPath.row == 0 {
+            // トップまでスクロールするとnavigationBarのすぐ下にcellが揃うようなUIに設定
+            favoriteListTableView.contentInset = UIEdgeInsets(top: (navigationController?.navigationBar.frame.maxY)!, left: 0, bottom: 0, right: 0)
+            self.view.addSubview(favoriteListTableView)
+        } else {
+            favoriteListTableView.contentMode = .scaleToFill
+            self.view.addSubview(favoriteListTableView)
+        }
         
         return cell
     }
