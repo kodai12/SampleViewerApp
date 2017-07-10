@@ -87,24 +87,23 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
                 currentSearchWord.word = searchWord
             }
             
-            do {
-                try realm.write {
-                    realm.add(currentSearchWord, update: true)
-                }
-            } catch {
-                print("catch the error on realm.write")
-            }
             updateSearchedResult()
-            print("searchedArticle is : \(SearchedArticles)")
             searchBar.resignFirstResponder()
             if SearchedArticles?.count != 0 {
                 print("search result is not nil")
+                do {
+                    try realm.write {
+                        realm.add(currentSearchWord, update: true)
+                    }
+                } catch {
+                    print("catch the error on realm.write")
+                }
                 performSegue(withIdentifier: "toSearchedResult", sender: nil)
             } else {
                 print("search result is nil")
                 alertBySearchedResultIsNil()
             }
-        } else{
+        } else {
             print("fail to get search text")
         }
     }
@@ -170,7 +169,45 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             pastSearchedTableView.deselectRow(at: indexPath, animated: true)
         }
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            guard let realm = try? Realm() else {
+                print("fail to get realm instance")
+                return
+            }
+            do {
+                try realm.write {
+                    realm.delete(realm.objects(SearchWord.self)[indexPath.row])
+                }
+            } catch {
+                print("catch the error on realm.write")
+            }
+            pastSearchedTableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "delete") { (action, index) -> Void in
+            guard let realm = try? Realm() else {
+                print("fail to get realm instance")
+                return
+            }
+            
+            do {
+                try realm.write {
+                    realm.delete(realm.objects(SearchWord.self)[indexPath.row])
+                }
+            } catch {
+                print("catch the error on realm.write")
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        deleteButton.backgroundColor = UIColor.red
+        
+        return [deleteButton]
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
