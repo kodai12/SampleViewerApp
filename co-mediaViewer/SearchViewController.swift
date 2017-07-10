@@ -18,8 +18,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     var searchWords = [String]()
     var currentSearchWord = SearchWord()
     var pastSearchedWords: Results<SearchWord>?
-    
     var SearchedArticles:Results<FavoriteArticle>?
+    
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,17 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         searchBar.showsCancelButton = true
         
         loadSearchHistory()
+        
+        // UIRefreshControlの設定
+        refreshControl.attributedTitle = NSAttributedString(string: "refresh searched words")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        pastSearchedTableView.addSubview(refreshControl)
+    }
+    
+    func refresh(){
+        loadSearchHistory()
+        pastSearchedTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func loadSearchHistory(){

@@ -17,6 +17,7 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
     
     var selectedTitle = String()
     var selectedURLString = String()
+    var refreshControl = UIRefreshControl()
     
     var searchWords = [String]()
     var searchedResults: Results<FavoriteArticle>?
@@ -33,6 +34,17 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.layer.borderWidth = 1
         searchBar.layer.borderColor = UIColor.white.cgColor
         searchBar.showsCancelButton = true
+        
+        // UIRefreshControlの設定
+        refreshControl.attributedTitle = NSAttributedString(string: "refresh articles")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        searchedResultTableView.addSubview(refreshControl)
+    }
+    
+    func refresh(){
+        updateSearchedResult()
+        searchedResultTableView.reloadData()
+        refreshControl.endRefreshing()
     }
 
 
