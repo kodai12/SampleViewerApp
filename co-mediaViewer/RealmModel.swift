@@ -11,7 +11,7 @@ import RealmSwift
 
 class FavoriteArticle: Object {
     
-    dynamic var id = Int()
+    dynamic var id = NSUUID().uuidString
     dynamic var addedAt = Date()
     dynamic var url = String()
     dynamic var title = String()
@@ -28,7 +28,7 @@ class FavoriteArticle: Object {
 
 class SearchWord: Object {
     
-    dynamic var id = Int()
+    dynamic var id = NSUUID().uuidString
     dynamic var word = String()
     dynamic var date = Date()
     

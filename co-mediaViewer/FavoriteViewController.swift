@@ -36,6 +36,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         favoriteListTableView.addSubview(refreshControl)
         
         hidingNavBarManager = HidingNavigationBarManager(viewController: self, scrollView: favoriteListTableView)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +52,9 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
             hidingNavBarManager?.manageBottomBar(tabBar)
         }
         hidingNavBarManager?.viewWillAppear(animated)
+        
+        loadData()
+        favoriteListTableView.reloadData()
 
     }
     
@@ -74,13 +78,12 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         // マイグレーションの実行
         var config = Realm.Configuration(
             migrationBlock:{(migration, oldSchemaVersion) in
-                if(oldSchemaVersion < 1){}
-                if(oldSchemaVersion < 2){}
-                if(oldSchemaVersion < 3){}
-                if(oldSchemaVersion < 4){}
-                if(oldSchemaVersion < 5){}
+                migration.enumerateObjects(ofType: FavoriteArticle.className()) { oldObject, newObject in
+                    if(oldSchemaVersion < 1){}
+                    
+                }
         })
-        config.schemaVersion = 5
+        config.schemaVersion = 1
         Realm.Configuration.defaultConfiguration = config
         // データのロード
         guard let realm = try? Realm(configuration: config) else{
@@ -139,7 +142,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
             let realm = RealmModel.realm.realmTry
             do {
                 try realm.write {
-                    realm.delete(RealmModel.realm.usersSet[indexPath.row])
+                    realm.delete(realm.objects(FavoriteArticle.self)[indexPath.row])
                 }
             } catch {
                 print("catch the error on realm.write")
@@ -154,7 +157,7 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
             let realm = RealmModel.realm.realmTry
             do {
                 try realm.write {
-                    realm.delete(RealmModel.realm.usersSet[indexPath.row])
+                    realm.delete(realm.objects(FavoriteArticle.self)[indexPath.row])
                 }
             } catch {
                 print("catch the error on realm.write")

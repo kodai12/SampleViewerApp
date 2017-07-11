@@ -35,12 +35,18 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         searchBar.layer.borderColor = UIColor.white.cgColor
         searchBar.showsCancelButton = true
         
-        loadSearchHistory()
-        
         // UIRefreshControlの設定
         refreshControl.attributedTitle = NSAttributedString(string: "refresh searched words")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         pastSearchedTableView.addSubview(refreshControl)
+        
+        loadSearchHistory()
+        pastSearchedTableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadSearchHistory()
+        pastSearchedTableView.reloadData()
     }
     
     func refresh(){
@@ -53,19 +59,17 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         // マイグレーションの実行
         var config = Realm.Configuration(
             migrationBlock:{(migration, oldSchemaVersion) in
-                if(oldSchemaVersion < 1){}
-                if(oldSchemaVersion < 2){}
-                if(oldSchemaVersion < 3){}
-                if(oldSchemaVersion < 4){}
-                if(oldSchemaVersion < 5){}
+                migration.enumerateObjects(ofType: SearchWord.className()) { oldObject, newObject in
+                    if(oldSchemaVersion < 1){}
+                }
         })
-        config.schemaVersion = 5
+        config.schemaVersion = 1
         Realm.Configuration.defaultConfiguration = config
         
         guard let realm = try? Realm(configuration: config) else{
             return
         }
-        pastSearchedWords = realm.objects(SearchWord.self).sorted(byKeyPath: "id", ascending: false)
+        pastSearchedWords = realm.objects(SearchWord.self).sorted(byKeyPath: "date", ascending: false)
         
     }
     
@@ -78,21 +82,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text != nil{
-            guard let realm = try? Realm() else{
-                print("fail to get realm instance")
-                return
-            }
-            
-            // idを生成
-            let object = realm.objects(SearchWord.self).sorted(byKeyPath: "id").last
-            if object == nil{
-                currentSearchWord.id = 1
-            } else {
-                currentSearchWord.id = (object?.id)! + 1
-            }
-            // 検索日時を取得
-            let now = Date()
-            currentSearchWord.date = now
+
             // 検索ワードを取得
             searchWords = (searchBar.text?.components(separatedBy: CharacterSet.whitespaces))!
             for searchWord in searchWords{
@@ -103,13 +93,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             searchBar.resignFirstResponder()
             if SearchedArticles?.count != 0 {
                 print("search result is not nil")
-                do {
-                    try realm.write {
-                        realm.add(currentSearchWord, update: true)
-                    }
-                } catch {
-                    print("catch the error on realm.write")
-                }
+                updateSearchWordInRealm(searchWord: currentSearchWord)
                 performSegue(withIdentifier: "toSearchedResult", sender: nil)
             } else {
                 print("search result is nil")
@@ -118,10 +102,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         } else {
             print("fail to get search text")
         }
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -143,11 +123,36 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         }
     }
     
+    func updateSearchWordInRealm(searchWord: SearchWord){
+        let updateSearchWord = SearchWord()
+        // 検索日時を取得
+        let now = Date()
+        updateSearchWord.date = now
+        updateSearchWord.word = searchWord.word
+        
+        guard let realm = try? Realm() else{
+            print("can't complete realm setting.")
+            return
+        }
+        
+        do {
+            try realm.write {
+                realm.add(updateSearchWord, update: true)
+            }
+        } catch {
+            print("catch the error on realm.write")
+        }
+    }
+    
     func alertBySearchedResultIsNil(){
         let alertController = UIAlertController(title: "検索結果は0件です", message: "別のキーワードで再度検索を行ってください", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(confirmAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -169,7 +174,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         guard let realm = try? Realm() else {
             return
         }
-        let tempResult = realm.objects(SearchWord.self).sorted(byKeyPath: "id", ascending: false)[indexPath.row]
+        let tempResult = realm.objects(SearchWord.self).sorted(byKeyPath: "date", ascending: false)[indexPath.row]
         let searchWord = tempResult.word
         SearchedArticles = realm.objects(FavoriteArticle.self)
         SearchedArticles = SearchedArticles?.filter("title CONTAINS[c] %@", searchWord)

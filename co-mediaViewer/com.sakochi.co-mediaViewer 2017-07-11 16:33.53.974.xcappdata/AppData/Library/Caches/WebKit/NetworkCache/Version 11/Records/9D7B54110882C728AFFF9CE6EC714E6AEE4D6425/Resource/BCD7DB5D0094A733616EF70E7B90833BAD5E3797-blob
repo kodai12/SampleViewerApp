@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset="utf-8">
+
+        <title>インタビューの記事一覧 | co-media [コメディア]</title>
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ITベンチャーやスタートアップで活躍する学生・若手社会人、海外で活躍する若者のインタビューをご紹介。学生起業家や内定者などの同世代の刺激的な人生を取り上げます。">
+  <meta property="og:title" content="co-media [コメディア] | 10代・20代の視野が広がるメディア">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://www.co-media.jp/category/1">
+  <meta property="og:image" content="http://www.co-media.jp/img/co-media.png"/>
+  <meta property="og:site_name" content="co-media">
+    <meta property="og:description" content="co-media [コメディア]は、未来をつくる世代のためのメディアです。同世代の多様な価値観に触れることで、10代、20代の行動を喚起していきます。">
+  <meta property="fb:app_id" content="1631403083779476">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:src" content="http://www.co-media.jp/img/co-media.png">
+
+        <link rel="canonical" href="http://www.co-media.jp/category/1">
+    <link rel="next" href="http://www.co-media.jp/category/1?page=2">
+  
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link href="/css/main/app.css" rel="stylesheet">
+    <link href="/css/main/show-category-articles.css" rel="stylesheet">
+
+  <script src="/js/main/layout.js"></script>
+
+</head>
+
+<body>
+<div id="fb-root"></div>
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.async = true;
+    js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.4&appId=1631403083779476";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div id="wrapper-all">
+    <div id="st-container" class="st-container">
+    <nav class="st-menu st-effect-2" id="menu-2">
+      <ul class="slide-nav nav-hidden">
+        <li>
+          <a href="/" class="slide-nav-logo">
+            <img src="/img/logo_w.png" alt="co-media" width="110" height="30">
+          </a>
+        </li>
+        <li class="slide-nav-outline">カテゴリ一覧</li>
+        <li><a href="/category/1">インタビュー</a></li>
+        <li><a href="/category/7">大学生活</a></li>
+        <li><a href="/category/2">就活</a></li>
+        <li><a href="/category/3">インターンシップ</a></li>
+        <li><a href="/category/4">留学ブログ</a></li>
+        <li><a href="/category/8">ビジネス</a></li>
+        <li><a href="/category/5">教養</a></li>
+        <li class="slide-nav-footer">
+          <a href="/contact/writer">編集者・ライターを募集中です <b>&gt;</b></a>
+        </li>
+
+        <li class="slide-nav-sns">
+          <a target="_blank" href='http://www.facebook.com/share.php?u=http://co-media.jp' onclick='window.open(this.href, ' FBwindow', 'width=650, height=450, menubar=no, toolbar=no,scrollbars=yes'); return false;'>
+            <img class="logo-sns-area-facebook" src="/img/icon/navi_facebook.png" alt="facebookでシェアする" width="10" height="20">
+          </a>
+
+          <a target=”_blank” href='http://twitter.com/share?url=http://co-media.jp&text=co-media 10代・20代の視野が広がるメディア&related=co_media_'>
+            <img class="logo-sns-area-twitter" src="/img/icon/navi_twitter.png" alt="twitterでシェアする" width="20" height="20">
+          </a>
+                  </li>
+      </ul>
+    </nav>
+
+    <div class="st-pusher">
+      <header class="header-navbar" role="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="header-navbar-area" id="st-trigger-effects">
+
+        <button class="slide-nav-toggle" type="button" data-effect="st-effect-2">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <div class="header-navbar-logo clearfix">
+          <a href="/">
+                                      <img src="/img/logo_w.png" alt="co-media[コメディア]" width="150" height="40">
+                      </a>
+        </div>
+      </div>
+      <ul class="header-navbar-categorys clearfix">
+                  <li><a class=now href="/category/1">インタビュー</a></li>
+          <li><a  href="/category/7">大学生活</a></li>
+          <li><a  href="/category/2">就活</a></li>
+          <li><a  href="/category/3">インターンシップ</a></li>
+          <li><a  href="/category/4">留学ブログ</a></li>
+          <li><a  href="/category/8">ビジネス</a></li>
+          <li><a  href="/category/5">教養</a></li>
+              </ul>
+    </div>
+  </div>
+</header>      
+<div class="wrapper-contents">
+  <div class="container">
+    <div class="row breadcrumb-area">
+      <div class="col-sm-12">
+                <div class="breadcrumb-list">
+  <ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+      <a itemprop="item" href="http://www.co-media.jp">
+        <span itemprop="name">co-mediaトップ</span>
+      </a>
+      <meta itemprop="position" content="1">
+    </li>
+                        <li>
+          <span>インタビュー</span>
+        </li>
+            </ul>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="information-category-box">
+  <div class="information-category-img" style="background-image: url(/img/interview.jpg)">
+    <div class="information-category-mask">
+      <h1 class="text-center">インタビュー</h1>
+          </div>
+  </div>
+</div>
+
+<div class="wrapper-contents">
+  <div class="container">
+    <div class="row inner">
+      <div class="col-xs-12 col-sm-8 main-contents-area">
+        <h2 class="title">インタビューの記事一覧</h2>
+
+                                      <div class="row">
+    
+    <div class="col-xs-12 col-sm-6 article-eyecatch">
+      <div class="article-eyecatch-inner">
+        <a href="/article/22372">
+          <div class="tag tag-category">
+            <span>
+              インタビュー
+            </span>
+          </div>
+          <div class="article-eyecatch-img">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/thumbnails/2f344bc43d0173217171a92789de1aed" alt="「私のような高校生を増やしたい」ベンチャー企業で働くJK専務あやみんが、同世代の高校生に伝えたいこと">
+          </div>
+        </a>
+
+        <div class="article-eyecatch-inner-bottom">
+
+                    <ol class="article-eyecatch-tag-list">
+                                                        <li><a href="/tag/1442">あやみん</a></li>
+                                                                      <li><a href="/tag/1452">夢高等学院</a></li>
+                                                                      <li><a href="/tag/1462">女子高生</a></li>
+                                    </ol>
+
+                    <a class="article-eyecatch-title" href="/article/22372">
+                          <h3>「私のような高校生を増やしたい」ベンチャー企業で働くJK専務あやみんが、同世代の高校生に伝えたいこと</h3>
+                      </a>
+
+                    <div class="article-eyecatch-detail">
+            <div class="article-writer">
+              <a href="/writer/142" class="writer-thumbnail-wrap">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/2015/11/comedia_square.png" alt="co-media 編集部">
+              </a>
+              <a href="/writer/142" class="writer-name">co-media 編集部</a>
+            </div>
+            <span class="article-upload-date">2017-06-06</span>
+          </div>
+
+                  </div><!-- .article-eyecatch-inner-bottom -->
+        <hr class="moblie-section-line">
+      </div><!-- .article-eyecatch-inner -->
+    </div><!-- .article-eyecatch -->
+
+                                              <div class="col-xs-12 col-sm-6 article-eyecatch">
+      <div class="article-eyecatch-inner">
+        <a href="/article/22262">
+          <div class="tag tag-category">
+            <span>
+              インタビュー
+            </span>
+          </div>
+          <div class="article-eyecatch-img">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/thumbnails/e2c9cf6a0fe7e8cf1df36d5f4b84b710" alt="UNIQLOさん、寄付した服は本当に届いているの？大学生の私が突撃インタビューしてみた！">
+          </div>
+        </a>
+
+        <div class="article-eyecatch-inner-bottom">
+
+                    <ol class="article-eyecatch-tag-list">
+                                                        <li><a href="/tag/1332">UNIQLO</a></li>
+                                                                      <li><a href="/tag/1342">難民支援</a></li>
+                                    </ol>
+
+                    <a class="article-eyecatch-title" href="/article/22262">
+                          <h3>UNIQLOさん、寄付した服は本当に届いているの？大学生の私が突撃インタビューしてみた！</h3>
+                      </a>
+
+                    <div class="article-eyecatch-detail">
+            <div class="article-writer">
+              <a href="/writer/762" class="writer-thumbnail-wrap">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/writer/5d55ef54ae5889cdf76307fe0aa7f37e" alt="山口 紗都美">
+              </a>
+              <a href="/writer/762" class="writer-name">山口 紗都美</a>
+            </div>
+            <span class="article-upload-date">2017-05-07</span>
+          </div>
+
+                  </div><!-- .article-eyecatch-inner-bottom -->
+        <hr class="moblie-section-line">
+      </div><!-- .article-eyecatch-inner -->
+    </div><!-- .article-eyecatch -->
+
+          </div>
+                                      <div class="row">
+    
+    <div class="col-xs-12 col-sm-6 article-eyecatch">
+      <div class="article-eyecatch-inner">
+        <a href="/article/22132">
+          <div class="tag tag-category">
+            <span>
+              インタビュー
+            </span>
+          </div>
+          <div class="article-eyecatch-img">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/thumbnails/43e77019ccf9ec40d7bebe2213c2ba4c" alt="イマ東・イカ東に斜め上な就活させてみた。これからは「アプリで他己分析」する時代">
+          </div>
+        </a>
+
+        <div class="article-eyecatch-inner-bottom">
+
+                    <ol class="article-eyecatch-tag-list">
+                                                        <li><a href="/tag/178">就活</a></li>
+                                                                      <li><a href="/tag/1102">自己分析</a></li>
+                                                                      <li><a href="/tag/1322">他己分析</a></li>
+                                                                      <li><a href="/tag/1312">Dpick</a></li>
+                                    </ol>
+
+                    <a class="article-eyecatch-title" href="/article/22132">
+                          <h3>イマ東・イカ東に斜め上な就活させてみた。これからは「アプリで他己分析」する時代</h3>
+                      </a>
+
+                    <div class="article-eyecatch-detail">
+            <div class="article-writer">
+              <a href="/writer/142" class="writer-thumbnail-wrap">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/2015/11/comedia_square.png" alt="co-media 編集部">
+              </a>
+              <a href="/writer/142" class="writer-name">co-media 編集部</a>
+            </div>
+            <span class="article-upload-date">2017-04-28</span>
+          </div>
+
+                      <p class="article-eyecatch-sponsored">Sponsored</p>
+                  </div><!-- .article-eyecatch-inner-bottom -->
+        <hr class="moblie-section-line">
+      </div><!-- .article-eyecatch-inner -->
+    </div><!-- .article-eyecatch -->
+
+                                              <div class="col-xs-12 col-sm-6 article-eyecatch">
+      <div class="article-eyecatch-inner">
+        <a href="/article/22202">
+          <div class="tag tag-category">
+            <span>
+              インタビュー
+            </span>
+          </div>
+          <div class="article-eyecatch-img">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/thumbnails/0d4437553d56d5662f429cb97ecee34f" alt="大学4年間は何に時間を使うべき？　在学中にコーヒーショップを創業した川野さんが語る「やりたいこと」の見つけ方">
+          </div>
+        </a>
+
+        <div class="article-eyecatch-inner-bottom">
+
+                    <ol class="article-eyecatch-tag-list">
+                                                        <li><a href="/tag/1292">LIGHT UP COFFEE</a></li>
+                                                                      <li><a href="/tag/333">起業家</a></li>
+                                                                      <li><a href="/tag/1302">学生起業</a></li>
+                                    </ol>
+
+                    <a class="article-eyecatch-title" href="/article/22202">
+                          <h3>大学4年間は何に時間を使うべき？　在学中にコーヒーショップを創業した川野さんが語る「やりたいこと」の見つけ方</h3>
+                      </a>
+
+                    <div class="article-eyecatch-detail">
+            <div class="article-writer">
+              <a href="/writer/142" class="writer-thumbnail-wrap">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/2015/11/comedia_square.png" alt="co-media 編集部">
+              </a>
+              <a href="/writer/142" class="writer-name">co-media 編集部</a>
+            </div>
+            <span class="article-upload-date">2017-04-24</span>
+          </div>
+
+                  </div><!-- .article-eyecatch-inner-bottom -->
+        <hr class="moblie-section-line">
+      </div><!-- .article-eyecatch-inner -->
+    </div><!-- .article-eyecatch -->
+
+          </div>
+                                      <div class="row">
+    
+    <div class="col-xs-12 col-sm-6 article-eyecatch">
+      <div class="article-eyecatch-inner">
+        <a href="/article/22122">
+          <div class="tag tag-category">
+            <span>
+              インタビュー
+            </span>
+          </div>
+          <div class="article-eyecatch-img">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/thumbnails/4889804795728a5d5606098f82af6eb1" alt="「留学や起業経験はなくてもいい」自分らしく就活するための秘訣を『採用学』の先生に聞いてみた">
+          </div>
+        </a>
+
+        <div class="article-eyecatch-inner-bottom">
+
+                    <ol class="article-eyecatch-tag-list">
+                                                        <li><a href="/tag/178">就活</a></li>
+                                                                      <li><a href="/tag/1282">採用学</a></li>
+                                    </ol>
+
+                    <a class="article-eyecatch-title" href="/article/22122">
+                          <h3>「留学や起業経験はなくてもいい」自分らしく就活するための秘訣を『採用学』の先生に聞いてみた</h3>
+                      </a>
+
+                    <div class="article-eyecatch-detail">
+            <div class="article-writer">
+              <a href="/writer/142" class="writer-thumbnail-wrap">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/2015/11/comedia_square.png" alt="co-media 編集部">
+              </a>
+              <a href="/writer/142" class="writer-name">co-media 編集部</a>
+            </div>
+            <span class="article-upload-date">2017-04-20</span>
+          </div>
+
+                  </div><!-- .article-eyecatch-inner-bottom -->
+        <hr class="moblie-section-line">
+      </div><!-- .article-eyecatch-inner -->
+    </div><!-- .article-eyecatch -->
+
+                                              <div class="col-xs-12 col-sm-6 article-eyecatch">
+      <div class="article-eyecatch-inner">
+        <a href="/article/22102">
+          <div class="tag tag-category">
+            <span>
+              インタビュー
+            </span>
+          </div>
+          <div class="article-eyecatch-img">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/thumbnails/0f47f21e4ef98c53b4a055aa05b6524d" alt="学生が自信を持って仕事を選べる社会をつくりたい――学生向けメディア「しごと研究部」がクラウドファンディングに挑戦中！">
+          </div>
+        </a>
+
+        <div class="article-eyecatch-inner-bottom">
+
+                    <ol class="article-eyecatch-tag-list">
+                                                        <li><a href="/tag/178">就活</a></li>
+                                    </ol>
+
+                    <a class="article-eyecatch-title" href="/article/22102">
+                          <h3>学生が自信を持って仕事を選べる社会をつくりたい――学生向けメディア「しごと研究部」がクラウドファンディングに挑 ...</h3>
+                      </a>
+
+                    <div class="article-eyecatch-detail">
+            <div class="article-writer">
+              <a href="/writer/142" class="writer-thumbnail-wrap">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/2015/11/comedia_square.png" alt="co-media 編集部">
+              </a>
+              <a href="/writer/142" class="writer-name">co-media 編集部</a>
+            </div>
+            <span class="article-upload-date">2017-04-10</span>
+          </div>
+
+                  </div><!-- .article-eyecatch-inner-bottom -->
+        <hr class="moblie-section-line">
+      </div><!-- .article-eyecatch-inner -->
+    </div><!-- .article-eyecatch -->
+
+          </div>
+                                      <div class="row">
+    
+    <div class="col-xs-12 col-sm-6 article-eyecatch">
+      <div class="article-eyecatch-inner">
+        <a href="/article/21882">
+          <div class="tag tag-category">
+            <span>
+              インタビュー
+            </span>
+          </div>
+          <div class="article-eyecatch-img">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/thumbnails/b2982c50843a3045aa431b507d71ca7c" alt="ＦＭ番組を局内１位にした大学生に聞く！学生がするべき「本当の貯蓄」とは？">
+          </div>
+        </a>
+
+        <div class="article-eyecatch-inner-bottom">
+
+                    <ol class="article-eyecatch-tag-list">
+                                                        <li><a href="/tag/327">大学生</a></li>
+                                                                      <li><a href="/tag/213">インターン</a></li>
+                                    </ol>
+
+                    <a class="article-eyecatch-title" href="/article/21882">
+                          <h3>ＦＭ番組を局内１位にした大学生に聞く！学生がするべき「本当の貯蓄」とは？</h3>
+                      </a>
+
+                    <div class="article-eyecatch-detail">
+            <div class="article-writer">
+              <a href="/writer/142" class="writer-thumbnail-wrap">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/2015/11/comedia_square.png" alt="co-media 編集部">
+              </a>
+              <a href="/writer/142" class="writer-name">co-media 編集部</a>
+            </div>
+            <span class="article-upload-date">2017-02-21</span>
+          </div>
+
+                  </div><!-- .article-eyecatch-inner-bottom -->
+        <hr class="moblie-section-line">
+      </div><!-- .article-eyecatch-inner -->
+    </div><!-- .article-eyecatch -->
+
+                                              <div class="col-xs-12 col-sm-6 article-eyecatch">
+      <div class="article-eyecatch-inner">
+        <a href="/article/21592">
+          <div class="tag tag-category">
+            <span>
+              インタビュー
+            </span>
+          </div>
+          <div class="article-eyecatch-img">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/thumbnails/84d862cc3827b80c3e1e8ef26f1f17b3" alt="いったいなぜ？「偏差値を上げない予備校」で生徒の成績が向上するわけ">
+          </div>
+        </a>
+
+        <div class="article-eyecatch-inner-bottom">
+
+                    <ol class="article-eyecatch-tag-list">
+                                                        <li><a href="/tag/216">教育</a></li>
+                                    </ol>
+
+                    <a class="article-eyecatch-title" href="/article/21592">
+                          <h3>いったいなぜ？「偏差値を上げない予備校」で生徒の成績が向上するわけ</h3>
+                      </a>
+
+                    <div class="article-eyecatch-detail">
+            <div class="article-writer">
+              <a href="/writer/142" class="writer-thumbnail-wrap">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/2015/11/comedia_square.png" alt="co-media 編集部">
+              </a>
+              <a href="/writer/142" class="writer-name">co-media 編集部</a>
+            </div>
+            <span class="article-upload-date">2017-02-13</span>
+          </div>
+
+                  </div><!-- .article-eyecatch-inner-bottom -->
+        <hr class="moblie-section-line">
+      </div><!-- .article-eyecatch-inner -->
+    </div><!-- .article-eyecatch -->
+
+          </div>
+                                      <div class="row">
+    
+    <div class="col-xs-12 col-sm-6 article-eyecatch">
+      <div class="article-eyecatch-inner">
+        <a href="/article/20752">
+          <div class="tag tag-category">
+            <span>
+              インタビュー
+            </span>
+          </div>
+          <div class="article-eyecatch-img">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/thumbnails/aedacfd558e4b008201d8bbda2e7af60" alt="「やれば何でもできるし、やらなかったら何も起きない」留学の学び、マッキンゼーでの成長を経て踏み出した&rdquo;起業&rdquo;という道。">
+          </div>
+        </a>
+
+        <div class="article-eyecatch-inner-bottom">
+
+                    <ol class="article-eyecatch-tag-list">
+                                                        <li><a href="/tag/161">起業</a></li>
+                                                                      <li><a href="/tag/277">英語</a></li>
+                                    </ol>
+
+                    <a class="article-eyecatch-title" href="/article/20752">
+                          <h3>「やれば何でもできるし、やらなかったら何も起きない」留学の学び、マッキンゼーでの成長を経て踏み出した&rdquo;起業&rdquo;と ...</h3>
+                      </a>
+
+                    <div class="article-eyecatch-detail">
+            <div class="article-writer">
+              <a href="/writer/142" class="writer-thumbnail-wrap">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/2015/11/comedia_square.png" alt="co-media 編集部">
+              </a>
+              <a href="/writer/142" class="writer-name">co-media 編集部</a>
+            </div>
+            <span class="article-upload-date">2016-11-14</span>
+          </div>
+
+                  </div><!-- .article-eyecatch-inner-bottom -->
+        <hr class="moblie-section-line">
+      </div><!-- .article-eyecatch-inner -->
+    </div><!-- .article-eyecatch -->
+
+                                              <div class="col-xs-12 col-sm-6 article-eyecatch">
+      <div class="article-eyecatch-inner">
+        <a href="/article/20352">
+          <div class="tag tag-category">
+            <span>
+              インタビュー
+            </span>
+          </div>
+          <div class="article-eyecatch-img">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/thumbnails/1fec8008f76e6f4d1d1ca2dbe9f78eb4" alt="「身近な違和感は、見過ごすと当たり前になる。」&rdquo;未来国会2016&rdquo;代表者が語る理想の社会の考え方。">
+          </div>
+        </a>
+
+        <div class="article-eyecatch-inner-bottom">
+
+                    <ol class="article-eyecatch-tag-list">
+                                                        <li><a href="/tag/281">イベント</a></li>
+                                    </ol>
+
+                    <a class="article-eyecatch-title" href="/article/20352">
+                          <h3>「身近な違和感は、見過ごすと当たり前になる。」&rdquo;未来国会2016&rdquo;代表者が語る理想の社会の考え方。</h3>
+                      </a>
+
+                    <div class="article-eyecatch-detail">
+            <div class="article-writer">
+              <a href="/writer/142" class="writer-thumbnail-wrap">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/2015/11/comedia_square.png" alt="co-media 編集部">
+              </a>
+              <a href="/writer/142" class="writer-name">co-media 編集部</a>
+            </div>
+            <span class="article-upload-date">2016-10-18</span>
+          </div>
+
+                  </div><!-- .article-eyecatch-inner-bottom -->
+        <hr class="moblie-section-line">
+      </div><!-- .article-eyecatch-inner -->
+    </div><!-- .article-eyecatch -->
+
+          </div>
+        
+        <div class="pagination-box">
+          <ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="http://www.co-media.jp/category/1/?page=2">2</a></li><li><a href="http://www.co-media.jp/category/1/?page=3">3</a></li><li><a href="http://www.co-media.jp/category/1/?page=4">4</a></li><li><a href="http://www.co-media.jp/category/1/?page=5">5</a></li><li><a href="http://www.co-media.jp/category/1/?page=6">6</a></li><li><a href="http://www.co-media.jp/category/1/?page=7">7</a></li><li><a href="http://www.co-media.jp/category/1/?page=8">8</a></li><li class="disabled"><span>...</span></li><li><a href="http://www.co-media.jp/category/1/?page=13">13</a></li><li><a href="http://www.co-media.jp/category/1/?page=14">14</a></li> <li><a href="http://www.co-media.jp/category/1/?page=2" rel="next">&raquo;</a></li></ul>        </div>
+      </div>
+
+      <div class="sidebar col-sm-4">
+        <aside class="sidebar-tag">
+      <h2 class="title">関連するタグ</h2>
+      <span><a href="/tags">タグ一覧へ</a></span>
+
+      <div class="sidebar-tag-list">
+                  <a href="/tag/564"><span class="tag-label">インタビュー</span></a>
+                  <a href="/tag/1292"><span class="tag-label">LIGHT UP COFFEE</span></a>
+              </div>
+    </aside>
+  
+  <aside class="sidebar-facebook">
+        <h2 class="title">最新記事をゲット</h2>
+    <div class="fb-page" data-href="https://www.facebook.com/comender" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/comender"><a href="https://www.facebook.com/comender">co-media 10代・20代の視野が広がるメディア</a></blockquote></div></div>
+  </aside>
+
+  <aside class="sidebar-line">
+    <a href="http://line.me/ti/p/%40jgh2236z" target="_blank" rel="nofollow">
+      <img src="/img/line/comedia_top.jpg" alt="co-mediaのLINE&#64;" onclick="ga('send', 'event', 'line', 'click', 'comedia_pc_top');">
+    </a>
+  </aside>
+
+  <aside class="sidebar-tag">
+    <h2 class="title">人気のタグ</h2>
+    <span><a href="/tags">タグ一覧へ</a></span>
+
+    <div class="sidebar-tag-list">
+                    <a href="/tag/81"><span class="tag-label">外資系</span></a>
+              <a href="/tag/952"><span class="tag-label">サマーインターン</span></a>
+      
+              <a href="/tag/177"><span class="tag-label">教養</span></a>
+              <a href="/tag/178"><span class="tag-label">就活</span></a>
+              <a href="/tag/186"><span class="tag-label">海外</span></a>
+              <a href="/tag/202"><span class="tag-label">アメリカ</span></a>
+              <a href="/tag/180"><span class="tag-label">留学</span></a>
+              <a href="/tag/183"><span class="tag-label">女性</span></a>
+              <a href="/tag/213"><span class="tag-label">インターン</span></a>
+              <a href="/tag/277"><span class="tag-label">英語</span></a>
+              <a href="/tag/111"><span class="tag-label">IT企業</span></a>
+              <a href="/tag/346"><span class="tag-label">日本</span></a>
+              <a href="/tag/282"><span class="tag-label">TED</span></a>
+              <a href="/tag/414"><span class="tag-label">ビジネス</span></a>
+              <a href="/tag/400"><span class="tag-label">ライフハック</span></a>
+              <a href="/tag/161"><span class="tag-label">起業</span></a>
+              <a href="/tag/327"><span class="tag-label">大学生</span></a>
+              <a href="/tag/662"><span class="tag-label">アメリカ留学ブログ</span></a>
+              <a href="/tag/210"><span class="tag-label">東大</span></a>
+              <a href="/tag/208"><span class="tag-label">学生旅行</span></a>
+              <a href="/tag/234"><span class="tag-label">大学</span></a>
+              <a href="/tag/357"><span class="tag-label">ハーバード</span></a>
+          </div>
+  </aside>
+
+  <aside class="sidebar-popular-article">
+    <h2 class="title">人気の記事</h2>
+        <div class="sidebar-popular-box">
+      <a class="sidebar-popular-article-img" href="/article/7152">
+        <img src="http://co-media.s3.amazonaws.com/2015/02/11025039_860096594032850_1922874477_o.jpg" alt="「リクルートを選んだ理由」日本から逃げ出した&rdquo;社会不適合系女子&rdquo;が、UCLAで確信したこと ">
+      </a>
+      <div class="sidebar-popular-box-right">
+        <a class="sidebar-popular-article-title" href="/article/7152">
+          <p>「リクルートを選んだ理由」日本から逃げ出した&rdquo;社会不適合系女子&rdquo;が、UCLAで確信したこと</p>
+        </a>
+        <span class="date">2015-02-25</span>
+      </div>
+    </div>
+        <div class="sidebar-popular-box">
+      <a class="sidebar-popular-article-img" href="/article/15892">
+        <img src="https://s3-ap-northeast-1.amazonaws.com/co-media/thumbnails/ecb1aa372a146eabc7d415a20af7a8de" alt="頑張っている学生が「意識高い」と笑われる日本は末期症状である。紀里谷和明監督インタビュー ">
+      </a>
+      <div class="sidebar-popular-box-right">
+        <a class="sidebar-popular-article-title" href="/article/15892">
+          <p>頑張っている学生が「意識高い」と笑われる日本は末期症状である。紀里谷和明監督インタビュー</p>
+        </a>
+        <span class="date">2015-12-03</span>
+      </div>
+    </div>
+        <div class="sidebar-popular-box">
+      <a class="sidebar-popular-article-img" href="/article/8966">
+        <img src="http://co-media.s3.amazonaws.com/2015/04/3dfdcff03a4b81b5a8bfa2f00a026523.jpg" alt="【TED】11歳の少年による的確な指摘、「僕たちの食料システムが何かおかしいよ」 ">
+      </a>
+      <div class="sidebar-popular-box-right">
+        <a class="sidebar-popular-article-title" href="/article/8966">
+          <p>【TED】11歳の少年による的確な指摘、「僕たちの食料システムが何かおかしいよ」</p>
+        </a>
+        <span class="date">2015-04-21</span>
+      </div>
+    </div>
+        <div class="sidebar-popular-box">
+      <a class="sidebar-popular-article-img" href="/article/9339">
+        <img src="http://co-media.s3.amazonaws.com/2015/05/87c8aeb3a203a5cae123733c22107b80.jpg" alt="ハーバード大学の偏差値は測れない！？東大生よりも何がスゴいのか。 ">
+      </a>
+      <div class="sidebar-popular-box-right">
+        <a class="sidebar-popular-article-title" href="/article/9339">
+          <p>ハーバード大学の偏差値は測れない！？東大生よりも何がスゴいのか。</p>
+        </a>
+        <span class="date">2015-05-03</span>
+      </div>
+    </div>
+        <div class="sidebar-popular-box">
+      <a class="sidebar-popular-article-img" href="/article/7121">
+        <img src="http://co-media.s3.amazonaws.com/2015/02/img_0d063fab3a3c16f2a40f84efe43385e045922.jpg" alt="92年生まれ、93年生まれがアツイ。同世代の飛び抜けた【若手起業家8選】 ">
+      </a>
+      <div class="sidebar-popular-box-right">
+        <a class="sidebar-popular-article-title" href="/article/7121">
+          <p>92年生まれ、93年生まれがアツイ。同世代の飛び抜けた【若手起業家8選】</p>
+        </a>
+        <span class="date">2015-02-22</span>
+      </div>
+    </div>
+      </aside>
+</div>
+
+    </div>
+  </div>
+</div>
+      <div class="footer-facebook">
+  <h3><span>co-media&nbsp;</span>を<br/>スキマ時間にチェックしよう</h3>
+  <div class="footer-facebook-likebox">
+    <div class="fb-page" data-href="https://www.facebook.com/comender" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/comender"><a href="https://www.facebook.com/comender">co-media 10代・20代の視野が広がるメディア</a></blockquote></div></div>
+  </div>
+</div>
+
+  <div class="footer-line-at">
+    <a href="http://line.me/ti/p/%40jgh2236z" target="_blank">
+      <img src="/img/line/comedia_top.jpg" alt="co-mediaのLINE&#64;" onclick="ga('send', 'event', 'line', 'click', 'comedia_mobile_upper_footer');">
+    </a>
+  </div>
+
+<div class="footer-back-top footer-mobile-hidden">
+  <a id="footer-back-top" href="#"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span> TOP</a>
+</div>
+
+<div class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-3">
+        <div class="footer-logo-box">
+          <a href="/">
+            <img src="/img/logo_w.png" alt="co-media" width="150" height="40">
+          </a>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-2 footer-category-list">
+        <h3><a href="/categories">カテゴリ</a></h3>
+          <ul>
+            <li><a href="/category/1">インタビュー</a></li>
+            <li><a href="/category/7">大学生活</a></li>
+            <li><a href="/category/2">就活</a></li>
+            <li><a href="/category/3">インターンシップ</a></li>
+            <li><a href="/category/4">留学</a></li>
+            <li><a href="/category/8">ビジネス</a></li>
+            <li><a href="/category/5">教養</a></li>
+          </ul>
+      </div>
+
+      <div class="col-sm-3 footer-tag-box footer-mobile-hidden">
+        <h3><a href="/tags">タグ</a></h3>
+          <div class="footer-tag-list">
+            <a href="/tag/213"><span class="tag-label">インターン</span></a>
+            <a href="/tag/178"><span class="tag-label">就活</span></a>
+            <a href="/tag/395"><span class="tag-label">内定</span></a>
+            <a href="/tag/414"><span class="tag-label">ビジネス</span></a>
+            <a href="/tag/161"><span class="tag-label">起業</span></a>
+            <a href="/tag/101"><span class="tag-label">ベンチャー</span></a>
+            <a href="/tag/211"><span class="tag-label">プログラミング</span></a>
+            <a href="/tag/244"><span class="tag-label">世界一周</span></a>
+            <a href="/tag/180"><span class="tag-label">留学</span></a>
+            <a href="/tag/186"><span class="tag-label">海外</span></a>
+            <a href="/tag/277"><span class="tag-label">英語</span></a>
+            <a href="/tag/188"><span class="tag-label">学生</span></a>
+            <a href="/tag/952"><span class="tag-label">サマーインターン</span></a>
+          </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 footer-about">
+        <h3><a href="/about">co-mediaについて</a></h3>
+        <div class="row">
+          <div class="col-sm-4 footer-content-list footer-mobile-hidden">
+            <ul>
+              <li><a href="/articles">一覧記事</a></li>
+              <li><a href="/categories">カテゴリー一覧</a></li>
+              <li><a href="/tags">タグ一覧</a></li>
+                            <li><a href="/writers">ライター一覧</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-12 col-sm-8 footer-contact-list">
+            <ul>
+              <li><a href="/about">co-mediaとは</a></li>
+              <li><a href="/contact/writer">編集者・ライターをご希望の方へ</a></li>
+              <li><a href="/contact/advertising">広告掲載(有料)をご希望の方へ</a></li>
+              <li><a href="https://www.traimmu.com" rel="nofollow">運営会社</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-copyright">
+      <span>Copyright&copy;</span> Traimmu Inc.
+    </div>
+
+  </div>
+</div>
+            <div class="fixed-infra-nav">
+        <div class="infra-nav-header">
+          <img src="/img/infra_logo.png" alt="InfrA ロゴ" width="76" height="25">
+          <span class="cancel">✕</span>
+        </div>
+
+                  <a href="https://www.in-fra.jp/?utm_source=co-media&utm_medium=banner&utm_campaign=co-media-fixed-nav-mobile" target="_blank" rel="nofollow">
+            <div class="infra-nav-content">
+              <p class="main-line">就活に役立つ長期・有給インターンを厳選して掲載</p>
+              <p class="additional">1ヶ月からOK / 未経験者歓迎 / 時給1,000円 etc ...</p>
+              <p class="sub-line"><img src="/img/comedia_logo_type.png" alt="co-media ロゴ" width="93" height="18">&nbsp;が運営するインターンシップサイト >></p>
+            </div>
+          </a>
+              </div>
+    </div>
+  </div>
+
+    <script src="/js/main/app.js"></script>
+  </div>
+</body>
+</html>

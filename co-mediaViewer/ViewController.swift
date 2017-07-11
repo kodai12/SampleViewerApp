@@ -128,13 +128,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDe
             print("can't complete realm setting.")
             return
         }
-        // 記事のidを生成
-        let object = realm.objects(FavoriteArticle.self).sorted(byKeyPath: "id").last
-        if object == nil{
-            updateFavoriteArticle.id = 1
-        } else {
-            updateFavoriteArticle.id = (object?.id)! + 1
-        }
+
         // 現在時刻の取得
         let now = Date()
         updateFavoriteArticle.addedAt = now
