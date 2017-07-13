@@ -33,7 +33,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         // searchBarのUIsetting
         searchBar.layer.borderWidth = 1
         searchBar.layer.borderColor = UIColor.white.cgColor
-        searchBar.showsCancelButton = true
         
         // UIRefreshControlの設定
         refreshControl.attributedTitle = NSAttributedString(string: "refresh searched words")
@@ -151,10 +150,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         present(alertController, animated: true, completion: nil)
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if pastSearchedWords == nil{
             return 0
@@ -225,6 +220,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         return [deleteButton]
     }
     
+    @IBAction func clickCancelButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -33,8 +33,7 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         // searchBarのUIsetting
         searchBar.layer.borderWidth = 1
         searchBar.layer.borderColor = UIColor.white.cgColor
-        searchBar.showsCancelButton = true
-        
+         
         // UIRefreshControlの設定
         refreshControl.attributedTitle = NSAttributedString(string: "refresh articles")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -65,11 +64,6 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
         searchedResultTableView.reloadData()
         
     }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     
     func updateSearchedResult(){
         guard let realm = try? Realm() else {
@@ -155,6 +149,7 @@ class SearchedResultViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func clickCancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
