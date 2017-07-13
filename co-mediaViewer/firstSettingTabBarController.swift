@@ -27,11 +27,12 @@ class firstSettingTabBarController: UITabBarController, UITabBarControllerDelega
             return
         }
         if favVC.isViewLoaded && favVC.view.window != nil{
-            favVC.favoriteListTableView.setContentOffset(CGPoint.zero, animated: true)
-            print("scroll to top")
+            favVC.favoriteListTableView.setContentOffset(CGPoint.init(x: 0, y: -(navVC.navigationBar.frame.maxY)), animated: true)
+            print("scroll is successed!")
         } else {
             print("favVC is not loaded")
         }
+        
     }
     
     

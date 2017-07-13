@@ -41,15 +41,3 @@ class SearchWord: Object {
     }
     
 }
-
-struct RealmModel {
-    
-    struct realm{
-        
-        static var realmTry = try! Realm()
-        static var realmsset = FavoriteArticle()
-        static var usersSet =  RealmModel.realm.realmTry.objects(FavoriteArticle.self)
-        
-    }
-
-}

@@ -139,7 +139,10 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            let realm = RealmModel.realm.realmTry
+            guard let realm = try? Realm() else{
+                print("fail to get realm instance")
+                return
+            }
             do {
                 try realm.write {
                     realm.delete(realm.objects(FavoriteArticle.self)[indexPath.row])
@@ -154,7 +157,10 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "delete") { (action, index) -> Void in
-            let realm = RealmModel.realm.realmTry
+            guard let realm = try? Realm() else{
+                print("fail to get realm instance")
+                return
+            }
             do {
                 try realm.write {
                     realm.delete(realm.objects(FavoriteArticle.self)[indexPath.row])

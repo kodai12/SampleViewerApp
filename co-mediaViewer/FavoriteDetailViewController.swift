@@ -140,7 +140,7 @@ class FavoriteDetailViewController: UIViewController, UIWebViewDelegate, UIGestu
         myComposeView?.add(shareURL)
         self.present(myComposeView!, animated: true, completion: nil)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
